@@ -1,0 +1,674 @@
+	project.vim	/^map  :NERDTreeToggle$/;"	m
+	project.vim	/^nnoremap <silent>  :CtrlP$/;"	m
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+0	project.vim	/^normal! 0$/;"	m
+<C-N>	project.vim	/^map <C-N> :NERDTreeToggle$/;"	m
+<C-P>	project.vim	/^nnoremap <silent> <C-P> :CtrlP$/;"	m
+<F5>	project.vim	/^nmap <F5> :CtrlPClearAllCaches$/;"	m
+<Plug>NetrwBrowseX	project.vim	/^nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())$/;"	m
+<Plug>NetrwBrowseXVis	project.vim	/^vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()$/;"	m
+BACKSPACE	console.c	25;"	d	file:
+BBLOCK	fs.h	51;"	d
+BPB	fs.h	48;"	d
+BSIZE	fs.h	6;"	d
+C	console.c	26;"	d	file:
+CONSOLE	file.h	40;"	d
+CSR_CRMD_IE	loongarch.h	4;"	d
+CSR_CRMD_IE_SHIFT	loongarch.h	3;"	d
+CSR_ECFG_LIE_TI_SHIFT	loongarch.h	89;"	d
+CSR_ECFG_VS_SHIFT	loongarch.h	88;"	d
+CSR_ESTAT_ECODE	loongarch.h	78;"	d
+CSR_TCFG_EN	loongarch.h	177;"	d
+CSR_TCFG_PER	loongarch.h	178;"	d
+CSR_TICLR_CLR	loongarch.h	107;"	d
+DIR1BASE	loongarch.h	206;"	d
+DIR1WIDTH	loongarch.h	207;"	d
+DIR2BASE	loongarch.h	208;"	d
+DIR2WIDTH	loongarch.h	209;"	d
+DIR3BASE	loongarch.h	211;"	d
+DIR3WIDTH	loongarch.h	212;"	d
+DIR4WIDTH	loongarch.h	213;"	d
+DIRSIZ	fs.h	54;"	d
+DMWIN_MASK	memlayout.h	10;"	d
+ELF_MAGIC	elf.h	3;"	d
+ELF_PROG_FLAG_EXEC	elf.h	40;"	d
+ELF_PROG_FLAG_READ	elf.h	42;"	d
+ELF_PROG_FLAG_WRITE	elf.h	41;"	d
+ELF_PROG_LOAD	elf.h	37;"	d
+EXT_INT_EN_SHIFT	loongarch.h	6;"	d
+FCR	uart.c	27;"	d	file:
+FCR_FIFO_CLEAR	uart.c	29;"	d	file:
+FCR_FIFO_ENABLE	uart.c	28;"	d	file:
+FD_DEVICE	file.h	/^  enum { FD_NONE, FD_PIPE, FD_INODE, FD_DEVICE } type;$/;"	e	enum:file::__anon4
+FD_INODE	file.h	/^  enum { FD_NONE, FD_PIPE, FD_INODE, FD_DEVICE } type;$/;"	e	enum:file::__anon4
+FD_NONE	file.h	/^  enum { FD_NONE, FD_PIPE, FD_INODE, FD_DEVICE } type;$/;"	e	enum:file::__anon4
+FD_PIPE	file.h	/^  enum { FD_NONE, FD_PIPE, FD_INODE, FD_DEVICE } type;$/;"	e	enum:file::__anon4
+FSMAGIC	fs.h	25;"	d
+FSSIZE	param.h	12;"	d
+H	project.vim	/^nnoremap H :bprev$/;"	m
+HWI_VEC	loongarch.h	90;"	d
+IBLOCK	fs.h	45;"	d
+IER	uart.c	24;"	d	file:
+IER_RX_ENABLE	uart.c	25;"	d	file:
+IER_TX_ENABLE	uart.c	26;"	d	file:
+INPUT_BUF	console.c	48;"	d	file:
+IPB	fs.h	42;"	d
+ISR	uart.c	30;"	d	file:
+KSTACK	memlayout.h	34;"	d
+L	project.vim	/^nnoremap L :bnext$/;"	m
+LCR	uart.c	31;"	d	file:
+LCR_BAUD_LATCH	uart.c	33;"	d	file:
+LCR_EIGHT_BITS	uart.c	32;"	d	file:
+LOGSIZE	param.h	10;"	d
+LOONGARCH_CSR_CPUID	asm.h	2;"	d
+LOONGARCH_CSR_CRMD	asm.h	1;"	d
+LOONGARCH_CSR_DMWIN0	asm.h	6;"	d
+LOONGARCH_CSR_DMWIN1	asm.h	7;"	d
+LOONGARCH_CSR_DMWIN2	asm.h	8;"	d
+LOONGARCH_CSR_DMWIN3	asm.h	9;"	d
+LOONGARCH_CSR_PGD	asm.h	13;"	d
+LOONGARCH_CSR_PGDL	asm.h	12;"	d
+LOONGARCH_CSR_SAVE0	asm.h	4;"	d
+LOONGARCH_CSR_TLBEHI	asm.h	11;"	d
+LOONGARCH_CSR_TLBRBADV	asm.h	15;"	d
+LOONGARCH_CSR_TLBRENTRY	asm.h	14;"	d
+LOONGARCH_CSR_TLBRSAVE	asm.h	16;"	d
+LOONGARCH_IOCSR_EXRIOI_NODETYPE_BASE	loongarch.h	12;"	d
+LOONGARCH_IOCSR_EXTIOI_EN_BASE	loongarch.h	8;"	d
+LOONGARCH_IOCSR_EXTIOI_ISR_BASE	loongarch.h	9;"	d
+LOONGARCH_IOCSR_EXTIOI_MAP_BASE	loongarch.h	10;"	d
+LOONGARCH_IOCSR_EXTIOI_ROUTE_BASE	loongarch.h	11;"	d
+LS7A_INT_CLEAR_REG	memlayout.h	21;"	d
+LS7A_INT_EDGE_REG	memlayout.h	20;"	d
+LS7A_INT_HTMSI_VEC_REG	memlayout.h	22;"	d
+LS7A_INT_MASK_REG	memlayout.h	19;"	d
+LS7A_INT_POL_REG	memlayout.h	24;"	d
+LS7A_INT_STATUS_REG	memlayout.h	23;"	d
+LS7A_PCH_REG_BASE	memlayout.h	17;"	d
+LSR	uart.c	34;"	d	file:
+LSR_RX_READY	uart.c	35;"	d	file:
+LSR_TX_IDLE	uart.c	36;"	d	file:
+MAXARG	param.h	8;"	d
+MAXFILE	fs.h	29;"	d
+MAXOPBLOCKS	param.h	9;"	d
+MAXPATH	param.h	13;"	d
+MAXVA	loongarch.h	304;"	d
+NBUF	param.h	11;"	d
+NCPU	param.h	2;"	d
+NDEV	param.h	6;"	d
+NDIRECT	fs.h	27;"	d
+NELEM	defs.h	182;"	d
+NFILE	param.h	4;"	d
+NINDIRECT	fs.h	28;"	d
+NINODE	param.h	5;"	d
+NOFILE	param.h	3;"	d
+NPROC	param.h	1;"	d
+O_CREATE	fcntl.h	4;"	d
+O_RDONLY	fcntl.h	1;"	d
+O_RDWR	fcntl.h	3;"	d
+O_TRUNC	fcntl.h	5;"	d
+O_WRONLY	fcntl.h	2;"	d
+PA2PTE	loongarch.h	296;"	d
+PAMASK	loongarch.h	293;"	d
+PGROUNDDOWN	loongarch.h	281;"	d
+PGROUNDUP	loongarch.h	280;"	d
+PGSHIFT	loongarch.h	278;"	d
+PGSIZE	loongarch.h	277;"	d
+PIPESIZE	pipe.c	11;"	d	file:
+PRMD_PIE	loongarch.h	48;"	d
+PRMD_PPLV	loongarch.h	47;"	d
+PTBASE	loongarch.h	204;"	d
+PTE2PA	loongarch.h	294;"	d
+PTEWIDTH	loongarch.h	210;"	d
+PTE_D	loongarch.h	284;"	d
+PTE_FLAGS	loongarch.h	297;"	d
+PTE_MAT	loongarch.h	286;"	d
+PTE_NR	loongarch.h	290;"	d
+PTE_NX	loongarch.h	289;"	d
+PTE_P	loongarch.h	287;"	d
+PTE_PLV	loongarch.h	285;"	d
+PTE_RPLV	loongarch.h	291;"	d
+PTE_V	loongarch.h	283;"	d
+PTE_W	loongarch.h	288;"	d
+PTWIDTH	loongarch.h	205;"	d
+PX	loongarch.h	302;"	d
+PXMASK	loongarch.h	300;"	d
+PXSHIFT	loongarch.h	301;"	d
+RAMBASE	memlayout.h	29;"	d
+RAMSTOP	memlayout.h	30;"	d
+RHR	uart.c	22;"	d	file:
+ROOTDEV	param.h	7;"	d
+ROOTINO	fs.h	5;"	d
+RUNNABLE	proc.h	/^enum procstate { UNUSED, USED, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };$/;"	e	enum:procstate
+RUNNING	proc.h	/^enum procstate { UNUSED, USED, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };$/;"	e	enum:procstate
+ReadReg	uart.c	38;"	d	file:
+Reg	uart.c	16;"	d	file:
+SLEEPING	proc.h	/^enum procstate { UNUSED, USED, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };$/;"	e	enum:procstate
+SYS_chdir	syscall.h	10;"	d
+SYS_close	syscall.h	22;"	d
+SYS_dup	syscall.h	11;"	d
+SYS_exec	syscall.h	8;"	d
+SYS_exit	syscall.h	3;"	d
+SYS_fork	syscall.h	2;"	d
+SYS_fstat	syscall.h	9;"	d
+SYS_getpid	syscall.h	12;"	d
+SYS_kill	syscall.h	7;"	d
+SYS_link	syscall.h	20;"	d
+SYS_mkdir	syscall.h	21;"	d
+SYS_mknod	syscall.h	18;"	d
+SYS_open	syscall.h	16;"	d
+SYS_pipe	syscall.h	5;"	d
+SYS_read	syscall.h	6;"	d
+SYS_sbrk	syscall.h	13;"	d
+SYS_sleep	syscall.h	14;"	d
+SYS_unlink	syscall.h	19;"	d
+SYS_uptime	syscall.h	15;"	d
+SYS_wait	syscall.h	4;"	d
+SYS_write	syscall.h	17;"	d
+SessionLoad	project.vim	/^let SessionLoad = 1$/;"	v
+THR	uart.c	23;"	d	file:
+TI_VEC	loongarch.h	91;"	d
+TRAPFRAME	memlayout.h	46;"	d
+T_DEVICE	stat.h	3;"	d
+T_DIR	stat.h	1;"	d
+T_FILE	stat.h	2;"	d
+UART0	memlayout.h	13;"	d
+UART0_IRQ	memlayout.h	14;"	d
+UART_TX_BUF_SIZE	uart.c	43;"	d	file:
+UNUSED	proc.h	/^enum procstate { UNUSED, USED, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };$/;"	e	enum:procstate
+USED	proc.h	/^enum procstate { UNUSED, USED, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };$/;"	e	enum:procstate
+WriteReg	uart.c	39;"	d	file:
+ZOMBIE	proc.h	/^enum procstate { UNUSED, USED, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };$/;"	e	enum:procstate
+\bb	project.vim	/^nmap \\bb :CtrlPBuffer$/;"	m
+\bm	project.vim	/^nmap \\bm :CtrlPMixed$/;"	m
+\bs	project.vim	/^nmap \\bs :CtrlPMRU$/;"	m
+\p	project.vim	/^nmap \\p :CtrlP$/;"	m
+_entry	entry.S	/^_entry:$/;"	l
+a0	proc.h	/^  \/*  24 *\/ uint64 a0;$/;"	m	struct:trapframe
+a1	proc.h	/^  \/*  32 *\/ uint64 a1;$/;"	m	struct:trapframe
+a2	proc.h	/^  \/*  40 *\/ uint64 a2;$/;"	m	struct:trapframe
+a3	proc.h	/^  \/*  48 *\/ uint64 a3;$/;"	m	struct:trapframe
+a4	proc.h	/^  \/*  56 *\/ uint64 a4;$/;"	m	struct:trapframe
+a5	proc.h	/^  \/*  64 *\/ uint64 a5;$/;"	m	struct:trapframe
+a6	proc.h	/^  \/*  72 *\/ uint64 a6;$/;"	m	struct:trapframe
+a7	proc.h	/^  \/*  80 *\/ uint64 a7;$/;"	m	struct:trapframe
+acquire	spinlock.c	/^acquire(struct spinlock *lk)$/;"	f
+acquiresleep	sleeplock.c	/^acquiresleep(struct sleeplock *lk)$/;"	f
+addrs	file.h	/^  uint addrs[NDIRECT+1];$/;"	m	struct:inode
+addrs	fs.h	/^  uint addrs[NDIRECT+1];   \/\/ Data block addresses$/;"	m	struct:dinode
+align	elf.h	/^  uint64 align;$/;"	m	struct:proghdr
+allocpid	proc.c	/^allocpid() {$/;"	f
+allocproc	proc.c	/^allocproc(void)$/;"	f	file:
+apic_complete	apic.c	/^apic_complete(uint64 irq)$/;"	f
+apic_init	apic.c	/^apic_init(void)$/;"	f
+argaddr	syscall.c	/^argaddr(int n, uint64 *ip)$/;"	f
+argfd	sysfile.c	/^argfd(int n, int *pfd, struct file **pf)$/;"	f	file:
+argint	syscall.c	/^argint(int n, int *ip)$/;"	f
+argraw	syscall.c	/^argraw(int n)\/\/todo$/;"	f	file:
+argstr	syscall.c	/^argstr(int n, char *buf, int max)$/;"	f
+balloc	fs.c	/^balloc(uint dev)$/;"	f	file:
+bcache	bio.c	/^} bcache;$/;"	v	typeref:struct:__anon1
+begin_op	log.c	/^begin_op(void)$/;"	f
+bfree	fs.c	/^bfree(int dev, uint b)$/;"	f	file:
+bget	bio.c	/^bget(uint dev, uint blockno)$/;"	f	file:
+binit	bio.c	/^binit(void)$/;"	f
+block	log.c	/^  int block[LOGSIZE];$/;"	m	struct:logheader	file:
+blockno	buf.h	/^  uint blockno;$/;"	m	struct:buf
+bmap	fs.c	/^bmap(struct inode *ip, uint bn)$/;"	f	file:
+bmapstart	fs.h	/^  uint bmapstart;    \/\/ Block number of first free map block$/;"	m	struct:superblock
+bpin	bio.c	/^bpin(struct buf *b) {$/;"	f
+bread	bio.c	/^bread(uint dev, uint blockno)$/;"	f
+brelse	bio.c	/^brelse(struct buf *b)$/;"	f
+buf	bio.c	/^  struct buf buf[NBUF];$/;"	m	struct:__anon1	typeref:struct:__anon1::buf	file:
+buf	buf.h	/^struct buf {$/;"	s
+buf	console.c	/^  char buf[INPUT_BUF];$/;"	m	struct:__anon2	file:
+bunpin	bio.c	/^bunpin(struct buf *b) {$/;"	f
+bwrite	bio.c	/^bwrite(struct buf *b)$/;"	f
+bzero	fs.c	/^bzero(int dev, int bno)$/;"	f	file:
+chan	proc.h	/^  void *chan;                  \/\/ If non-zero, sleeping on chan$/;"	m	struct:proc
+clockintr	trap.c	/^clockintr()$/;"	f
+commit	log.c	/^commit()$/;"	f	file:
+committing	log.c	/^  int committing;  \/\/ in commit(), please wait.$/;"	m	struct:log	file:
+cons	console.c	/^} cons;$/;"	v	typeref:struct:__anon2
+consoleinit	console.c	/^consoleinit(void)$/;"	f
+consoleintr	console.c	/^consoleintr(int c)$/;"	f
+consoleread	console.c	/^consoleread(int user_dst, uint64 dst, int n)$/;"	f
+consolewrite	console.c	/^consolewrite(int user_src, uint64 src, int n)$/;"	f
+consputc	console.c	/^consputc(int c)$/;"	f
+context	proc.h	/^  struct context context;      \/\/ swtch() here to run process$/;"	m	struct:proc	typeref:struct:proc::context
+context	proc.h	/^  struct context context;     \/\/ swtch() here to enter scheduler().$/;"	m	struct:cpu	typeref:struct:cpu::context
+context	proc.h	/^struct context$/;"	s
+copyin	vm.c	/^copyin(pagetable_t pagetable, char *dst, uint64 srcva, uint64 len)$/;"	f
+copyinstr	vm.c	/^copyinstr(pagetable_t pagetable, char *dst, uint64 srcva, uint64 max)$/;"	f
+copyout	vm.c	/^copyout(pagetable_t pagetable, uint64 dstva, char *src, uint64 len)$/;"	f
+cpu	proc.h	/^struct cpu {$/;"	s
+cpu	spinlock.h	/^  struct cpu *cpu;   \/\/ The cpu holding the lock.$/;"	m	struct:spinlock	typeref:struct:spinlock::cpu
+cpuid	proc.c	/^cpuid()$/;"	f
+cpus	proc.c	/^struct cpu cpus[NCPU];$/;"	v	typeref:struct:cpu
+create	sysfile.c	/^create(char *path, short type, short major, short minor)$/;"	f	file:
+cwd	proc.h	/^  struct inode *cwd;           \/\/ Current directory$/;"	m	struct:proc	typeref:struct:proc::inode
+data	buf.h	/^  uchar data[BSIZE];$/;"	m	struct:buf
+data	pipe.c	/^  char data[PIPESIZE];$/;"	m	struct:pipe	file:
+day	date.h	/^  uint day;$/;"	m	struct:rtcdate
+dev	buf.h	/^  uint dev;$/;"	m	struct:buf
+dev	file.h	/^  uint dev;           \/\/ Device number$/;"	m	struct:inode
+dev	log.c	/^  int dev;$/;"	m	struct:log	file:
+dev	stat.h	/^  int dev;     \/\/ File system's disk device$/;"	m	struct:stat
+devintr	trap.c	/^devintr()$/;"	f
+devsw	file.c	/^struct devsw devsw[NDEV];$/;"	v	typeref:struct:devsw
+devsw	file.h	/^struct devsw {$/;"	s
+digits	printf.c	/^static char digits[] = "0123456789abcdef";$/;"	v	file:
+dinode	fs.h	/^struct dinode {$/;"	s
+dirent	fs.h	/^struct dirent {$/;"	s
+dirlink	fs.c	/^dirlink(struct inode *dp, char *name, uint inum)$/;"	f
+dirlookup	fs.c	/^dirlookup(struct inode *dp, char *name, uint *poff)$/;"	f
+disk	buf.h	/^  int disk;    \/\/ does disk "own" buf?$/;"	m	struct:buf
+e	console.c	/^  uint e;  \/\/ Edit index$/;"	m	struct:__anon2	file:
+ehsize	elf.h	/^  ushort ehsize;$/;"	m	struct:elfhdr
+either_copyin	proc.c	/^either_copyin(void *dst, int user_src, uint64 src, uint64 len)  \/\/todo$/;"	f
+either_copyout	proc.c	/^either_copyout(int user_dst, uint64 dst, void *src, uint64 len)  \/\/todo$/;"	f
+elf	elf.h	/^  uchar elf[12];$/;"	m	struct:elfhdr
+elfhdr	elf.h	/^struct elfhdr {$/;"	s
+end_op	log.c	/^end_op(void)$/;"	f
+entry	elf.h	/^  uint64 entry;$/;"	m	struct:elfhdr
+era	proc.h	/^  \/* 264 *\/ uint64 era;           \/\/ saved user program counter$/;"	m	struct:trapframe
+exec	exec.c	/^exec(char *path, char **argv)$/;"	f
+exit	proc.c	/^exit(int status)$/;"	f
+extioi_claim	extioi.c	/^extioi_claim(void)$/;"	f
+extioi_complete	extioi.c	/^void extioi_complete(uint64 irq)$/;"	f
+extioi_init	extioi.c	/^void extioi_init(void)$/;"	f
+fdalloc	sysfile.c	/^fdalloc(struct file *f)$/;"	f	file:
+fetchaddr	syscall.c	/^fetchaddr(uint64 addr, uint64 *ip)$/;"	f
+fetchstr	syscall.c	/^fetchstr(uint64 addr, char *buf, int max)$/;"	f
+file	file.c	/^  struct file file[NFILE];$/;"	m	struct:__anon3	typeref:struct:__anon3::file	file:
+file	file.h	/^struct file {$/;"	s
+filealloc	file.c	/^filealloc(void)$/;"	f
+fileclose	file.c	/^fileclose(struct file *f)$/;"	f
+filedup	file.c	/^filedup(struct file *f)$/;"	f
+fileinit	file.c	/^fileinit(void)$/;"	f
+fileread	file.c	/^fileread(struct file *f, uint64 addr, int n)\/\/todo$/;"	f
+filestat	file.c	/^filestat(struct file *f, uint64 addr)$/;"	f
+filesz	elf.h	/^  uint64 filesz;$/;"	m	struct:proghdr
+filewrite	file.c	/^filewrite(struct file *f, uint64 addr, int n)$/;"	f
+flags	elf.h	/^  uint flags;$/;"	m	struct:elfhdr
+flags	elf.h	/^  uint32 flags;$/;"	m	struct:proghdr
+fork	proc.c	/^fork(void)$/;"	f
+forkret	proc.c	/^forkret(void)$/;"	f
+fp	proc.h	/^  \/* 168 *\/ uint64 fp;$/;"	m	struct:trapframe
+fp	proc.h	/^  uint64 fp;$/;"	m	struct:context
+freelist	kalloc.c	/^  struct run *freelist;$/;"	m	struct:__anon6	typeref:struct:__anon6::run	file:
+freeproc	proc.c	/^freeproc(struct proc *p)$/;"	f	file:
+freerange	kalloc.c	/^freerange(void *pa_start, void *pa_end)$/;"	f
+freewalk	vm.c	/^freewalk(pagetable_t pagetable)$/;"	f
+fs_img	ramdisk.h	/^unsigned char fs_img[] = {$/;"	v
+fs_img_len	ramdisk.h	/^unsigned int fs_img_len = 1024000;$/;"	v
+fsinit	fs.c	/^fsinit(int dev) {$/;"	f
+ftable	file.c	/^} ftable;$/;"	v	typeref:struct:__anon3
+growproc	proc.c	/^growproc(int n)$/;"	f
+gx	project.vim	/^nmap gx <Plug>NetrwBrowseX$/;"	m
+gx	project.vim	/^vmap gx <Plug>NetrwBrowseXVis$/;"	m
+handle_merr	merror.S	/^handle_merr:$/;"	l
+handle_tlbr	tlbrefill.S	/^handle_tlbr:$/;"	l
+head	bio.c	/^  struct buf head;$/;"	m	struct:__anon1	typeref:struct:__anon1::buf	file:
+holding	spinlock.c	/^holding(struct spinlock *lk)$/;"	f
+holdingsleep	sleeplock.c	/^holdingsleep(struct sleeplock *lk)$/;"	f
+hour	date.h	/^  uint hour;$/;"	m	struct:rtcdate
+ialloc	fs.c	/^ialloc(uint dev, short type)$/;"	f
+idup	fs.c	/^idup(struct inode *ip)$/;"	f
+iget	fs.c	/^iget(uint dev, uint inum)$/;"	f	file:
+iinit	fs.c	/^iinit()$/;"	f
+ilock	fs.c	/^ilock(struct inode *ip)$/;"	f
+initcode	proc.c	/^uchar initcode[] = {$/;"	v
+initlock	spinlock.c	/^initlock(struct spinlock *lk, char *name)$/;"	f
+initlog	log.c	/^initlog(int dev, struct superblock *sb)$/;"	f
+initproc	proc.c	/^struct proc *initproc;$/;"	v	typeref:struct:proc
+initsleeplock	sleeplock.c	/^initsleeplock(struct sleeplock *lk, char *name)$/;"	f
+ino	stat.h	/^  uint ino;    \/\/ Inode number$/;"	m	struct:stat
+inode	file.h	/^struct inode {$/;"	s
+inode	fs.c	/^  struct inode inode[NINODE];$/;"	m	struct:__anon5	typeref:struct:__anon5::inode	file:
+inodestart	fs.h	/^  uint inodestart;   \/\/ Block number of first inode block$/;"	m	struct:superblock
+install_trans	log.c	/^install_trans(int recovering)$/;"	f	file:
+intena	proc.h	/^  int intena;                 \/\/ Were interrupts enabled before push_off()?$/;"	m	struct:cpu
+intr_get	loongarch.h	/^intr_get()$/;"	f
+intr_off	loongarch.h	/^intr_off()$/;"	f
+intr_on	loongarch.h	/^intr_on()$/;"	f
+inum	file.h	/^  uint inum;          \/\/ Inode number$/;"	m	struct:inode
+inum	fs.h	/^  ushort inum;$/;"	m	struct:dirent
+iocsr_readl	loongarch.h	/^static inline uint32 iocsr_readl(uint32 reg)$/;"	f
+iocsr_readq	loongarch.h	/^static inline uint64 iocsr_readq(uint32 reg)$/;"	f
+iocsr_writel	loongarch.h	/^static inline void iocsr_writel(uint32 val, uint32 reg)$/;"	f
+iocsr_writeq	loongarch.h	/^static inline void iocsr_writeq(uint64 val, uint32 reg)$/;"	f
+ip	file.h	/^  struct inode *ip;  \/\/ FD_INODE and FD_DEVICE$/;"	m	struct:file	typeref:struct:file::inode
+iput	fs.c	/^iput(struct inode *ip)$/;"	f
+isdirempty	sysfile.c	/^isdirempty(struct inode *dp)$/;"	f	file:
+itable	fs.c	/^} itable;$/;"	v	typeref:struct:__anon5
+itrunc	fs.c	/^itrunc(struct inode *ip)$/;"	f
+iunlock	fs.c	/^iunlock(struct inode *ip)$/;"	f
+iunlockput	fs.c	/^iunlockput(struct inode *ip)$/;"	f
+iupdate	fs.c	/^iupdate(struct inode *ip)$/;"	f
+kalloc	kalloc.c	/^kalloc(void)$/;"	f
+kernel_hartid	proc.h	/^  \/* 272 *\/ uint64 kernel_hartid; \/\/ saved kernel tp$/;"	m	struct:trapframe
+kernel_sp	proc.h	/^  \/* 248 *\/ uint64 kernel_sp;     \/\/ top of process's kernel stack$/;"	m	struct:trapframe
+kernel_trap	proc.h	/^  \/* 256 *\/ uint64 kernel_trap;   \/\/ usertrap()$/;"	m	struct:trapframe
+kerneltrap	trap.c	/^kerneltrap()$/;"	f
+kernelvec	kernelvec.S	/^kernelvec:$/;"	l
+kfree	kalloc.c	/^kfree(void *pa)$/;"	f
+kill	proc.c	/^kill(int pid)$/;"	f
+killed	proc.h	/^  int killed;                  \/\/ If non-zero, have been killed$/;"	m	struct:proc
+kinit	kalloc.c	/^kinit()$/;"	f
+kmem	kalloc.c	/^} kmem;$/;"	v	typeref:struct:__anon6
+kstack	proc.h	/^  uint64 kstack;               \/\/ Virtual address of kernel stack$/;"	m	struct:proc
+lh	log.c	/^  struct logheader lh;$/;"	m	struct:log	typeref:struct:log::logheader	file:
+lk	sleeplock.h	/^  struct spinlock lk; \/\/ spinlock protecting this sleep lock$/;"	m	struct:sleeplock	typeref:struct:sleeplock::spinlock
+loadseg	exec.c	/^loadseg(pagetable_t pagetable, uint64 va, struct inode *ip, uint offset, uint sz)$/;"	f	file:
+lock	bio.c	/^  struct spinlock lock;$/;"	m	struct:__anon1	typeref:struct:__anon1::spinlock	file:
+lock	buf.h	/^  struct sleeplock lock;$/;"	m	struct:buf	typeref:struct:buf::sleeplock
+lock	console.c	/^  struct spinlock lock;$/;"	m	struct:__anon2	typeref:struct:__anon2::spinlock	file:
+lock	file.c	/^  struct spinlock lock;$/;"	m	struct:__anon3	typeref:struct:__anon3::spinlock	file:
+lock	file.h	/^  struct sleeplock lock; \/\/ protects everything below here$/;"	m	struct:inode	typeref:struct:inode::sleeplock
+lock	fs.c	/^  struct spinlock lock;$/;"	m	struct:__anon5	typeref:struct:__anon5::spinlock	file:
+lock	kalloc.c	/^  struct spinlock lock;$/;"	m	struct:__anon6	typeref:struct:__anon6::spinlock	file:
+lock	log.c	/^  struct spinlock lock;$/;"	m	struct:log	typeref:struct:log::spinlock	file:
+lock	pipe.c	/^  struct spinlock lock;$/;"	m	struct:pipe	typeref:struct:pipe::spinlock	file:
+lock	printf.c	/^  struct spinlock lock;$/;"	m	struct:__anon7	typeref:struct:__anon7::spinlock	file:
+lock	proc.h	/^  struct spinlock lock;$/;"	m	struct:proc	typeref:struct:proc::spinlock
+locked	sleeplock.h	/^  uint locked;       \/\/ Is the lock held?$/;"	m	struct:sleeplock
+locked	spinlock.h	/^  uint locked;       \/\/ Is the lock held?$/;"	m	struct:spinlock
+locking	printf.c	/^  int locking;$/;"	m	struct:__anon7	file:
+log	log.c	/^struct log log;$/;"	v	typeref:struct:log
+log	log.c	/^struct log {$/;"	s	file:
+log_write	log.c	/^log_write(struct buf *b)$/;"	f
+logheader	log.c	/^struct logheader {$/;"	s	file:
+logstart	fs.h	/^  uint logstart;     \/\/ Block number of first log block$/;"	m	struct:superblock
+machine	elf.h	/^  ushort machine;$/;"	m	struct:elfhdr
+machine_trap	trap.c	/^machine_trap()$/;"	f
+magic	elf.h	/^  uint magic;  \/\/ must equal ELF_MAGIC$/;"	m	struct:elfhdr
+magic	fs.h	/^  uint magic;        \/\/ Must be FSMAGIC$/;"	m	struct:superblock
+main	main.c	/^main()$/;"	f
+major	file.h	/^  short major;       \/\/ FD_DEVICE$/;"	m	struct:file
+major	file.h	/^  short major;$/;"	m	struct:inode
+major	file.h	12;"	d
+major	fs.h	/^  short major;          \/\/ Major device number (T_DEVICE only)$/;"	m	struct:dinode
+mappages	vm.c	/^mappages(pagetable_t pagetable, uint64 va, uint64 size, uint64 pa, uint64 perm)$/;"	f
+memcmp	string.c	/^memcmp(const void *v1, const void *v2, uint n)$/;"	f
+memcpy	string.c	/^memcpy(void *dst, const void *src, uint n)$/;"	f
+memmove	string.c	/^memmove(void *dst, const void *src, uint n)$/;"	f
+memset	string.c	/^memset(void *dst, int c, uint n)$/;"	f
+memsz	elf.h	/^  uint64 memsz;$/;"	m	struct:proghdr
+min	fs.c	24;"	d	file:
+minor	file.h	/^  short minor;$/;"	m	struct:inode
+minor	file.h	13;"	d
+minor	fs.h	/^  short minor;          \/\/ Minor device number (T_DEVICE only)$/;"	m	struct:dinode
+minute	date.h	/^  uint minute;$/;"	m	struct:rtcdate
+mkdev	file.h	14;"	d
+month	date.h	/^  uint month;$/;"	m	struct:rtcdate
+mycpu	proc.c	/^mycpu(void) {$/;"	f
+myproc	proc.c	/^myproc(void) {$/;"	f
+n	log.c	/^  int n;$/;"	m	struct:logheader	file:
+name	fs.h	/^  char name[DIRSIZ];$/;"	m	struct:dirent
+name	proc.h	/^  char name[16];               \/\/ Process name (debugging)$/;"	m	struct:proc
+name	sleeplock.h	/^  char *name;        \/\/ Name of lock.$/;"	m	struct:sleeplock
+name	spinlock.h	/^  char *name;        \/\/ Name of lock.$/;"	m	struct:spinlock
+namecmp	fs.c	/^namecmp(const char *s, const char *t)$/;"	f
+namei	fs.c	/^namei(char *path)$/;"	f
+nameiparent	fs.c	/^nameiparent(char *path, char *name)$/;"	f
+namex	fs.c	/^namex(char *path, int nameiparent, char *name)$/;"	f	file:
+nblocks	fs.h	/^  uint nblocks;      \/\/ Number of data blocks$/;"	m	struct:superblock
+next	buf.h	/^  struct buf *next;$/;"	m	struct:buf	typeref:struct:buf::buf
+next	kalloc.c	/^  struct run *next;$/;"	m	struct:run	typeref:struct:run::run	file:
+nextpid	proc.c	/^int nextpid = 1;$/;"	v
+ninodes	fs.h	/^  uint ninodes;      \/\/ Number of inodes.$/;"	m	struct:superblock
+nlink	file.h	/^  short nlink;$/;"	m	struct:inode
+nlink	fs.h	/^  short nlink;          \/\/ Number of links to inode in file system$/;"	m	struct:dinode
+nlink	stat.h	/^  short nlink; \/\/ Number of links to file$/;"	m	struct:stat
+nlog	fs.h	/^  uint nlog;         \/\/ Number of log blocks$/;"	m	struct:superblock
+noff	proc.h	/^  int noff;                   \/\/ Depth of push_off() nesting.$/;"	m	struct:cpu
+nread	pipe.c	/^  uint nread;     \/\/ number of bytes read$/;"	m	struct:pipe	file:
+nwrite	pipe.c	/^  uint nwrite;    \/\/ number of bytes written$/;"	m	struct:pipe	file:
+off	elf.h	/^  uint64 off;$/;"	m	struct:proghdr
+off	file.h	/^  uint off;          \/\/ FD_INODE$/;"	m	struct:file
+ofile	proc.h	/^  struct file *ofile[NOFILE];  \/\/ Open files$/;"	m	struct:proc	typeref:struct:proc::file
+outstanding	log.c	/^  int outstanding; \/\/ how many FS sys calls are executing.$/;"	m	struct:log	file:
+paddr	elf.h	/^  uint64 paddr;$/;"	m	struct:proghdr
+pagetable	proc.h	/^  pagetable_t pagetable;    \/\/ User lower half address page table$/;"	m	struct:proc
+pagetable_t	loongarch.h	/^typedef uint64 *pagetable_t;/;"	t
+panic	printf.c	/^panic(char *s)$/;"	f
+panicked	printf.c	/^volatile int panicked = 0;$/;"	v
+parent	proc.h	/^  struct proc *parent;         \/\/ Parent process$/;"	m	struct:proc	typeref:struct:proc::proc
+pde_t	types.h	/^typedef uint64 pde_t;$/;"	t
+phentsize	elf.h	/^  ushort phentsize;$/;"	m	struct:elfhdr
+phnum	elf.h	/^  ushort phnum;$/;"	m	struct:elfhdr
+phoff	elf.h	/^  uint64 phoff;$/;"	m	struct:elfhdr
+pid	proc.h	/^  int pid;                     \/\/ Process ID$/;"	m	struct:proc
+pid	sleeplock.h	/^  int pid;           \/\/ Process holding lock$/;"	m	struct:sleeplock
+pid_lock	proc.c	/^struct spinlock pid_lock;$/;"	v	typeref:struct:spinlock
+pipe	file.h	/^  struct pipe *pipe; \/\/ FD_PIPE$/;"	m	struct:file	typeref:struct:file::pipe
+pipe	pipe.c	/^struct pipe {$/;"	s	file:
+pipealloc	pipe.c	/^pipealloc(struct file **f0, struct file **f1)$/;"	f
+pipeclose	pipe.c	/^pipeclose(struct pipe *pi, int writable)$/;"	f
+piperead	pipe.c	/^piperead(struct pipe *pi, uint64 addr, int n)$/;"	f
+pipewrite	pipe.c	/^pipewrite(struct pipe *pi, uint64 addr, int n)$/;"	f
+pop_off	spinlock.c	/^pop_off(void)$/;"	f
+pr	printf.c	/^} pr;$/;"	v	typeref:struct:__anon7	file:
+prev	buf.h	/^  struct buf *prev; \/\/ LRU cache list$/;"	m	struct:buf	typeref:struct:buf::buf
+printf	printf.c	/^printf(char *fmt, ...)$/;"	f
+printfinit	printf.c	/^printfinit(void)$/;"	f
+printint	printf.c	/^printint(int xx, int base, int sign)$/;"	f	file:
+printptr	printf.c	/^printptr(uint64 x)$/;"	f	file:
+proc	proc.c	/^struct proc proc[NPROC];$/;"	v	typeref:struct:proc
+proc	proc.h	/^  struct proc *proc;          \/\/ The process running on this cpu, or null.$/;"	m	struct:cpu	typeref:struct:cpu::proc
+proc	proc.h	/^struct proc$/;"	s
+proc_freepagetable	proc.c	/^proc_freepagetable(pagetable_t pagetable, uint64 sz)$/;"	f
+proc_pagetable	proc.c	/^proc_pagetable(struct proc *p)$/;"	f
+procdump	proc.c	/^procdump(void)$/;"	f
+procinit	proc.c	/^procinit(void)$/;"	f
+procstate	proc.h	/^enum procstate { UNUSED, USED, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };$/;"	g
+proghdr	elf.h	/^struct proghdr {$/;"	s
+pte_t	loongarch.h	/^typedef uint64 pte_t;$/;"	t
+push_off	spinlock.c	/^push_off(void)$/;"	f
+r	console.c	/^  uint r;  \/\/ Read index$/;"	m	struct:__anon2	file:
+r21	proc.h	/^  \/* 160 *\/ uint64 r21;$/;"	m	struct:trapframe
+r_csr_badi	loongarch.h	/^r_csr_badi()$/;"	f
+r_csr_crmd	loongarch.h	/^r_csr_crmd()$/;"	f
+r_csr_ecfg	loongarch.h	/^r_csr_ecfg()$/;"	f
+r_csr_eentry	loongarch.h	/^r_csr_eentry()$/;"	f
+r_csr_era	loongarch.h	/^r_csr_era()$/;"	f
+r_csr_estat	loongarch.h	/^r_csr_estat()$/;"	f
+r_csr_prmd	loongarch.h	/^r_csr_prmd()$/;"	f
+r_csr_ticlr	loongarch.h	/^r_csr_ticlr()$/;"	f
+r_csr_tlbrelo0	loongarch.h	/^r_csr_tlbrelo0()$/;"	f
+r_csr_tlbrelo1	loongarch.h	/^r_csr_tlbrelo1()$/;"	f
+r_sp	loongarch.h	/^r_sp()$/;"	f
+r_tp	loongarch.h	/^r_tp()$/;"	f
+ra	proc.h	/^  \/*   0 *\/ uint64 ra;$/;"	m	struct:trapframe
+ra	proc.h	/^  uint64 ra;$/;"	m	struct:context
+ramdiskinit	ramdisk.c	/^ramdiskinit(void)$/;"	f
+ramdiskrw	ramdisk.c	/^ramdiskrw(struct buf *b, int write)$/;"	f
+read	file.h	/^  int (*read)(int, uint64, int);$/;"	m	struct:devsw
+read_head	log.c	/^read_head(void)$/;"	f	file:
+readable	file.h	/^  char readable;$/;"	m	struct:file
+readi	fs.c	/^readi(struct inode *ip, int user_dst, uint64 dst, uint off, uint n)$/;"	f
+readopen	pipe.c	/^  int readopen;   \/\/ read fd is still open$/;"	m	struct:pipe	file:
+readsb	fs.c	/^readsb(int dev, struct superblock *sb)$/;"	f	file:
+recover_from_log	log.c	/^recover_from_log(void)$/;"	f	file:
+ref	file.h	/^  int ref;            \/\/ Reference count$/;"	m	struct:inode
+ref	file.h	/^  int ref; \/\/ reference count$/;"	m	struct:file
+refcnt	buf.h	/^  uint refcnt;$/;"	m	struct:buf
+release	spinlock.c	/^release(struct spinlock *lk)$/;"	f
+releasesleep	sleeplock.c	/^releasesleep(struct sleeplock *lk)$/;"	f
+reparent	proc.c	/^reparent(struct proc *p)$/;"	f
+rtcdate	date.h	/^struct rtcdate {$/;"	s
+run	kalloc.c	/^struct run {$/;"	s	file:
+s0	proc.h	/^  \/* 176 *\/ uint64 s0;$/;"	m	struct:trapframe
+s0	proc.h	/^  uint64 s0;$/;"	m	struct:context
+s1	proc.h	/^  \/* 184 *\/ uint64 s1;$/;"	m	struct:trapframe
+s1	proc.h	/^  uint64 s1;$/;"	m	struct:context
+s2	proc.h	/^  \/* 192 *\/ uint64 s2;$/;"	m	struct:trapframe
+s2	proc.h	/^  uint64 s2;$/;"	m	struct:context
+s3	proc.h	/^  \/* 200 *\/ uint64 s3;$/;"	m	struct:trapframe
+s3	proc.h	/^  uint64 s3;$/;"	m	struct:context
+s4	proc.h	/^  \/* 208 *\/ uint64 s4;$/;"	m	struct:trapframe
+s4	proc.h	/^  uint64 s4;$/;"	m	struct:context
+s5	proc.h	/^  \/* 216 *\/ uint64 s5;$/;"	m	struct:trapframe
+s5	proc.h	/^  uint64 s5;$/;"	m	struct:context
+s6	proc.h	/^  \/* 224 *\/ uint64 s6;$/;"	m	struct:trapframe
+s6	proc.h	/^  uint64 s6;$/;"	m	struct:context
+s7	proc.h	/^  \/* 232 *\/ uint64 s7;$/;"	m	struct:trapframe
+s7	proc.h	/^  uint64 s7;$/;"	m	struct:context
+s8	proc.h	/^  \/* 240 *\/ uint64 s8;$/;"	m	struct:trapframe
+s8	proc.h	/^  uint64 s8;$/;"	m	struct:context
+s:cpo_save	project.vim	/^let s:cpo_save=&cpo$/;"	v
+s:l	project.vim	/^let s:l = 47 - ((34 * winheight(0) + 17) \/ 35)$/;"	v
+s:so_save	project.vim	/^let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0$/;"	v
+s:sx	project.vim	/^let s:sx = expand("<sfile>:p:r")."x.vim"$/;"	v
+s:wipebuf	project.vim	/^  let s:wipebuf = bufnr('%')$/;"	v
+safestrcpy	string.c	/^safestrcpy(char *s, const char *t, int n)$/;"	f
+sb	fs.c	/^struct superblock sb; $/;"	v	typeref:struct:superblock
+sched	proc.c	/^sched(void)$/;"	f
+scheduler	proc.c	/^scheduler(void)$/;"	f
+second	date.h	/^  uint second;$/;"	m	struct:rtcdate
+shentsize	elf.h	/^  ushort shentsize;$/;"	m	struct:elfhdr
+shnum	elf.h	/^  ushort shnum;$/;"	m	struct:elfhdr
+shoff	elf.h	/^  uint64 shoff;$/;"	m	struct:elfhdr
+shstrndx	elf.h	/^  ushort shstrndx;$/;"	m	struct:elfhdr
+size	file.h	/^  uint size;$/;"	m	struct:inode
+size	fs.h	/^  uint size;            \/\/ Size of file (bytes)$/;"	m	struct:dinode
+size	fs.h	/^  uint size;         \/\/ Size of file system image (blocks)$/;"	m	struct:superblock
+size	log.c	/^  int size;$/;"	m	struct:log	file:
+size	stat.h	/^  uint64 size; \/\/ Size of file in bytes$/;"	m	struct:stat
+skipelem	fs.c	/^skipelem(char *path, char *name)$/;"	f	file:
+sleep	proc.c	/^sleep(void *chan, struct spinlock *lk)$/;"	f
+sleeplock	sleeplock.h	/^struct sleeplock {$/;"	s
+sp	proc.h	/^  \/*  16 *\/ uint64 sp;$/;"	m	struct:trapframe
+sp	proc.h	/^  uint64 sp;$/;"	m	struct:context
+spin	entry.S	/^spin:$/;"	l
+spinlock	spinlock.h	/^struct spinlock {$/;"	s
+stack0	main.c	/^__attribute__ ((aligned (16))) char stack0[4096 * NCPU];$/;"	v
+start	log.c	/^  int start;$/;"	m	struct:log	file:
+started	main.c	/^volatile static int started = 0;$/;"	v	file:
+stat	stat.h	/^struct stat {$/;"	s
+state	proc.h	/^  enum procstate state;        \/\/ Process state$/;"	m	struct:proc	typeref:enum:proc::procstate
+stati	fs.c	/^stati(struct inode *ip, struct stat *st)$/;"	f
+strlen	string.c	/^strlen(const char *s)$/;"	f
+strncmp	string.c	/^strncmp(const char *p, const char *q, uint n)$/;"	f
+strncpy	string.c	/^strncpy(char *s, const char *t, int n)$/;"	f
+superblock	fs.h	/^struct superblock {$/;"	s
+swtch	swtch.S	/^swtch:$/;"	l
+sys_chdir	sysfile.c	/^sys_chdir(void)$/;"	f
+sys_close	sysfile.c	/^sys_close(void)$/;"	f
+sys_dup	sysfile.c	/^sys_dup(void)$/;"	f
+sys_exec	sysfile.c	/^sys_exec(void)$/;"	f
+sys_exit	sysproc.c	/^sys_exit(void)$/;"	f
+sys_fork	sysproc.c	/^sys_fork(void)$/;"	f
+sys_fstat	sysfile.c	/^sys_fstat(void)$/;"	f
+sys_getpid	sysproc.c	/^sys_getpid(void)$/;"	f
+sys_kill	sysproc.c	/^sys_kill(void)$/;"	f
+sys_link	sysfile.c	/^sys_link(void)$/;"	f
+sys_mkdir	sysfile.c	/^sys_mkdir(void)$/;"	f
+sys_mknod	sysfile.c	/^sys_mknod(void)$/;"	f
+sys_open	sysfile.c	/^sys_open(void)$/;"	f
+sys_pipe	sysfile.c	/^sys_pipe(void)$/;"	f
+sys_read	sysfile.c	/^sys_read(void)$/;"	f
+sys_sbrk	sysproc.c	/^sys_sbrk(void)$/;"	f
+sys_sleep	sysproc.c	/^sys_sleep(void)$/;"	f
+sys_unlink	sysfile.c	/^sys_unlink(void)$/;"	f
+sys_uptime	sysproc.c	/^sys_uptime(void)$/;"	f
+sys_wait	sysproc.c	/^sys_wait(void)$/;"	f
+sys_write	sysfile.c	/^sys_write(void)$/;"	f
+syscall	syscall.c	/^syscall(void)$/;"	f
+syscalls	syscall.c	/^static uint64 (*syscalls[])(void) = {$/;"	v	file:
+sz	proc.h	/^  uint64 sz;                   \/\/ Size of process memory (bytes)$/;"	m	struct:proc
+t0	proc.h	/^  \/*  88 *\/ uint64 t0;$/;"	m	struct:trapframe
+t1	proc.h	/^  \/*  96 *\/ uint64 t1;$/;"	m	struct:trapframe
+t2	proc.h	/^  \/* 104 *\/ uint64 t2;$/;"	m	struct:trapframe
+t3	proc.h	/^  \/* 112 *\/ uint64 t3;$/;"	m	struct:trapframe
+t4	proc.h	/^  \/* 120 *\/ uint64 t4;$/;"	m	struct:trapframe
+t5	proc.h	/^  \/* 128 *\/ uint64 t5;$/;"	m	struct:trapframe
+t6	proc.h	/^  \/* 136 *\/ uint64 t6;$/;"	m	struct:trapframe
+t7	proc.h	/^  \/* 144 *\/ uint64 t7;$/;"	m	struct:trapframe
+t8	proc.h	/^  \/* 152 *\/ uint64 t8;$/;"	m	struct:trapframe
+ticks	trap.c	/^uint ticks;$/;"	v
+tickslock	trap.c	/^struct spinlock tickslock;$/;"	v	typeref:struct:spinlock
+tlbinit	vm.c	/^tlbinit(void)$/;"	f
+tp	proc.h	/^  \/*   8 *\/ uint64 tp;$/;"	m	struct:trapframe
+trapframe	proc.h	/^  struct trapframe *trapframe; \/\/ data page for trampoline.S, use DMW address$/;"	m	struct:proc	typeref:struct:proc::trapframe
+trapframe	proc.h	/^struct trapframe {$/;"	s
+trapinit	trap.c	/^trapinit(void)$/;"	f
+type	elf.h	/^  uint32 type;$/;"	m	struct:proghdr
+type	elf.h	/^  ushort type;$/;"	m	struct:elfhdr
+type	file.h	/^  enum { FD_NONE, FD_PIPE, FD_INODE, FD_DEVICE } type;$/;"	m	struct:file	typeref:enum:file::__anon4
+type	file.h	/^  short type;         \/\/ copy of disk inode$/;"	m	struct:inode
+type	fs.h	/^  short type;           \/\/ File type$/;"	m	struct:dinode
+type	stat.h	/^  short type;  \/\/ Type of file$/;"	m	struct:stat
+uart_tx_buf	uart.c	/^char uart_tx_buf[UART_TX_BUF_SIZE];$/;"	v
+uart_tx_lock	uart.c	/^struct spinlock uart_tx_lock;$/;"	v	typeref:struct:spinlock
+uart_tx_r	uart.c	/^uint64 uart_tx_r; \/\/ read next from uart_tx_buf[uart_tx_r % UART_TX_BUF_SIZE]$/;"	v
+uart_tx_w	uart.c	/^uint64 uart_tx_w; \/\/ write next to uart_tx_buf[uart_tx_w % UART_TX_BUF_SIZE]$/;"	v
+uartgetc	uart.c	/^uartgetc(void)$/;"	f
+uartinit	uart.c	/^uartinit(void)$/;"	f
+uartintr	uart.c	/^uartintr(void)$/;"	f
+uartputc	uart.c	/^uartputc(int c)$/;"	f
+uartputc_sync	uart.c	/^uartputc_sync(int c)$/;"	f
+uartstart	uart.c	/^uartstart()$/;"	f
+uchar	types.h	/^typedef unsigned char  uchar;$/;"	t
+uint	types.h	/^typedef unsigned int   uint;$/;"	t
+uint16	types.h	/^typedef unsigned short uint16;$/;"	t
+uint32	types.h	/^typedef unsigned int  uint32;$/;"	t
+uint64	types.h	/^typedef unsigned long uint64;$/;"	t
+uint8	types.h	/^typedef unsigned char uint8;$/;"	t
+userinit	proc.c	/^userinit(void)$/;"	f
+userret	uservec.S	/^userret:$/;"	l
+usertrap	trap.c	/^usertrap(void)$/;"	f
+usertrapret	trap.c	/^usertrapret(void)$/;"	f
+uservec	uservec.S	/^uservec:    $/;"	l
+ushort	types.h	/^typedef unsigned short ushort;$/;"	t
+uvmalloc	vm.c	/^uvmalloc(pagetable_t pagetable, uint64 oldsz, uint64 newsz)$/;"	f
+uvmclear	vm.c	/^uvmclear(pagetable_t pagetable, uint64 va)$/;"	f
+uvmcopy	vm.c	/^uvmcopy(pagetable_t old, pagetable_t new, uint64 sz)$/;"	f
+uvmcreate	vm.c	/^uvmcreate()$/;"	f
+uvmdealloc	vm.c	/^uvmdealloc(pagetable_t pagetable, uint64 oldsz, uint64 newsz)$/;"	f
+uvmfree	vm.c	/^uvmfree(pagetable_t pagetable, uint64 sz)$/;"	f
+uvminit	vm.c	/^uvminit(pagetable_t pagetable, uchar *src, uint sz)$/;"	f
+uvmunmap	vm.c	/^uvmunmap(pagetable_t pagetable, uint64 va, uint64 npages, int do_free)$/;"	f
+vaddr	elf.h	/^  uint64 vaddr;$/;"	m	struct:proghdr
+valid	buf.h	/^  int valid;   \/\/ has data been read from disk?$/;"	m	struct:buf
+valid	file.h	/^  int valid;          \/\/ inode has been read from disk?$/;"	m	struct:inode
+version	elf.h	/^  uint version;$/;"	m	struct:elfhdr
+vminit	vm.c	/^vminit(void)\/\/todo$/;"	f
+w	console.c	/^  uint w;  \/\/ Write index$/;"	m	struct:__anon2	file:
+w_csr_asid	loongarch.h	/^w_csr_asid(uint32 x)$/;"	f
+w_csr_crmd	loongarch.h	/^w_csr_crmd(uint32 x)$/;"	f
+w_csr_ecfg	loongarch.h	/^w_csr_ecfg(uint32 x)$/;"	f
+w_csr_eentry	loongarch.h	/^w_csr_eentry(uint64 x)$/;"	f
+w_csr_era	loongarch.h	/^w_csr_era(uint64 x)$/;"	f
+w_csr_merrentry	loongarch.h	/^w_csr_merrentry(uint64 x)$/;"	f
+w_csr_pgdh	loongarch.h	/^w_csr_pgdh(uint64 x)$/;"	f
+w_csr_pgdl	loongarch.h	/^w_csr_pgdl(uint64 x)$/;"	f
+w_csr_prmd	loongarch.h	/^w_csr_prmd(uint32 x)$/;"	f
+w_csr_pwch	loongarch.h	/^w_csr_pwch(uint32 x)$/;"	f
+w_csr_pwcl	loongarch.h	/^w_csr_pwcl(uint32 x)$/;"	f
+w_csr_stlbps	loongarch.h	/^w_csr_stlbps(uint32 x)$/;"	f
+w_csr_tcfg	loongarch.h	/^w_csr_tcfg(uint64 x)$/;"	f
+w_csr_ticlr	loongarch.h	/^w_csr_ticlr(uint32 x)$/;"	f
+w_csr_tlbrehi	loongarch.h	/^w_csr_tlbrehi(uint64 x)$/;"	f
+w_csr_tlbrentry	loongarch.h	/^w_csr_tlbrentry(uint64 x)$/;"	f
+wait	proc.c	/^wait(uint64 addr)$/;"	f
+wait_lock	proc.c	/^struct spinlock wait_lock;$/;"	v	typeref:struct:spinlock
+wakeup	proc.c	/^wakeup(void *chan)$/;"	f
+walk	vm.c	/^walk(pagetable_t pagetable, uint64 va, int alloc)$/;"	f
+walkaddr	vm.c	/^walkaddr(pagetable_t pagetable, uint64 va)$/;"	f
+writable	file.h	/^  char writable;$/;"	m	struct:file
+write	file.h	/^  int (*write)(int, uint64, int);$/;"	m	struct:devsw
+write_head	log.c	/^write_head(void)$/;"	f	file:
+write_log	log.c	/^write_log(void)$/;"	f	file:
+writei	fs.c	/^writei(struct inode *ip, int user_src, uint64 src, uint off, uint n)$/;"	f
+writeopen	pipe.c	/^  int writeopen;  \/\/ write fd is still open$/;"	m	struct:pipe	file:
+xstate	proc.h	/^  int xstate;                  \/\/ Exit status to be returned to parent's wait$/;"	m	struct:proc
+year	date.h	/^  uint year;$/;"	m	struct:rtcdate
+yield	proc.c	/^yield(void)$/;"	f
+zt	project.vim	/^normal! zt$/;"	m
