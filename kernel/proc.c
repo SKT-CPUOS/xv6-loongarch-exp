@@ -249,6 +249,7 @@ growproc(int n)
 
   sz = p->sz;
   if(n > 0){
+    if(sz+n>=MAXVA-PGSIZE)return -1;//trampoline
     if((sz = uvmalloc(p->pagetable, sz, sz + n)) == 0) {
       return -1;
     }

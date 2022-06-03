@@ -2147,7 +2147,7 @@ sbrkbasic(char *s)
 void
 sbrkmuch(char *s)
 {
-  enum { BIG=100*1024*1024 };
+  enum { BIG=512*1024 };
   char *c, *oldbrk, *a, *lastaddr, *p;
   uint64 amt;
 
@@ -2734,6 +2734,7 @@ countfree()
     
     while(1){
       uint64 a = (uint64) sbrk(4096);
+//  printf("YESYES1::%d\n\n",a);
       if(a == 0xffffffffffffffff){
         break;
       }
@@ -2802,7 +2803,6 @@ main(int argc, char *argv[])
 {
   int continuous = 0;
   char *justone = 0;
-
   if(argc == 2 && strcmp(argv[1], "-c") == 0){
     continuous = 1;
   } else if(argc == 2 && strcmp(argv[1], "-C") == 0){
@@ -2813,7 +2813,6 @@ main(int argc, char *argv[])
     printf("Usage: usertests [-c] [testname]\n");
     exit(1);
   }
-  
   struct test {
     void (*f)(char *);
     char *s;
@@ -2883,7 +2882,8 @@ main(int argc, char *argv[])
     {bigdir, "bigdir"}, // slow
     { 0, 0},
   };
-
+  printf("jibajiba:%p\n",r_sp());
+  printf("gougoubaba:%p",&continuous);
   if(continuous){
     printf("continuous usertests starting\n");
     while(1){
@@ -2911,6 +2911,7 @@ main(int argc, char *argv[])
 
   printf("usertests starting\n");
   int free0 = countfree();
+
   int free1 = 0;
   int fail = 0;
   for (struct test *t = tests; t->s != 0; t++) {
