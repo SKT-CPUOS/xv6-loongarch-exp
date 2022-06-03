@@ -41,7 +41,7 @@ loongarch64-unknown-linux-gnu-gcc --version
 ```
 
 看到如下提示则说明已正确设置
-![](Pasted%20image%2020220528100304.png)
+![](./imgs/Pasted%20image%2020220528100304.png)
 
 ## 编译xv6内核
 
@@ -57,10 +57,10 @@ make all
 ```
 
 终端会输出包括如下部分的编译信息
-![](Pasted%20image%2020220528101719.png)
+![](./imgs/Pasted%20image%2020220528101719.png)
 
 当前路径下会生成`fs.img`文件，`\kernel`下也会生成所有链接时需要的\*.o, \*.d等文件，以及最终的`kernel`二进制文件
-![](Pasted%20image%2020220528102004.png)
+![](./imgs/Pasted%20image%2020220528102004.png)
 
 ## QEMU运行xv6-loongarch
 
@@ -75,7 +75,7 @@ cd qemu-loongarch-runenv
 
 启动后如下图所示，按下“Ctrl” + “A”组合键，松开后再按"X"来退出QEMU。
 
-![](Pasted%20image%2020220602102051.png)
+![](./imgs/Pasted%20image%2020220602102051.png)
 
 
 # 调试观察
@@ -100,7 +100,7 @@ make install
 ```
 
 查看自定义的安装路径下的文件，如下图所示
-![](Pasted%20image%2020220602095832.png)
+![](./imgs/Pasted%20image%2020220602095832.png)
 
 
 ## GDB调试观察
@@ -110,14 +110,14 @@ make install
 ./run_loongarch.sh -k ../kernel/kernel -D
 ```
 
-![](Pasted%20image%2020220602105307.png)
+![](./imgs/Pasted%20image%2020220602105307.png)
 
 此时在另一个终端上启动gdb，并指定被调试对象(编译好的kernel文件路径)
 ```bash
 /opt/gdb/bin/loongarch64-unknown-linux-gnu-gdb ../kernel/kernel
 ```
 
-![](Pasted%20image%2020220602105953.png)
+![](./imgs/Pasted%20image%2020220602105953.png)
 
 
 在gdb命令提示符下执行`target remote :1234`命令连接到xv6目标系统上
@@ -125,13 +125,13 @@ make install
 target remote :1234
 ```
 
-![](Pasted%20image%2020220602110048.png)
+![](./imgs/Pasted%20image%2020220602110048.png)
 
 使用`b`命令在kernel/main.c的函数入口设置断点，并使用`c`命令继续执行xv6内核代码，直到碰到断点
-![](Pasted%20image%2020220602111325.png)
+![](./imgs/Pasted%20image%2020220602111325.png)
 
 此时xv6的输出窗口中显示了相应的启动过程，但由于设置了断点，仍未到达shell的初始化。
-![](Pasted%20image%2020220602111602.png)
+![](./imgs/Pasted%20image%2020220602111602.png)
 
 ## GDB调试基本指令
 
