@@ -32,7 +32,7 @@ OBJS = \
   $K/sysfile.o\
   $K/uservec.o
 
-TOOLPREFIX = loongarch64-linux-gnu-
+TOOLPREFIX = loongarch64-unknown-linux-gnu-
 
 CC = $(TOOLPREFIX)gcc
 AS = $(TOOLPREFIX)gas
@@ -111,7 +111,6 @@ UPROGS=\
 	$U/_rm\
 	$U/_sh\
 	$U/_stressfs\
-	$U/_pinpong\
 	$U/_usertests\
 #	$U/_grind\
 	$U/_wc\

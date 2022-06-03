@@ -10,10 +10,10 @@ LoongArch是由我国龙芯中科研发的自主指令系统（龙芯架构）�
 ## 配置交叉编译环境
 
 为了能编译在LoongArch下运行的xv6内核，需要下载交叉编译工具链。
-```bash
-wget https://github.com/loongson/build-tools/releases/download/2021.12.21/loongarch64-clfs-2021-12-18-cross-tools-gcc-full.tar.xz
+```sh
+wget https://github.com/loongson/build-tools/releases/download/2022.05.29/loongarch64-clfs-5.0-cross-tools-gcc-full.tar.xz
 
-sudo tar -vxf loongarch64-clfs-2021-12-18-cross-tools-gcc-full.tar.xz -C /opt
+sudo tar -vxf loongarch64-clfs-5.0-cross-tools-gcc-full.tar.xz -C /opt
 ```
 
 配置交叉编译工具的环境变量

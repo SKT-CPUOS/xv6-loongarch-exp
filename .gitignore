@@ -58,3 +58,6 @@ dkms.conf
 fs.img
 _*
 .gdb_history
+mkfs
+initcode
+usys.S
