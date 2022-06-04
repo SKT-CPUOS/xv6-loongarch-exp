@@ -1,154 +1,24 @@
-# xv6-loongarch的安装使用
+- 新增系统调用
 
-xv6是 麻省理工的一个教学操作系统，是 Dennis Ritchie 和 Ken Thompson 的 Unix 的重新实现版本 6 (v6)。 被广泛应用于操作系统教学课程，现有x86和[RISC-V](https://github.com/mit-pdos/xv6-riscv)版本。其中x86版本已停止维护和更新。
+  ## 系统调用实例
 
-LoongArch是由我国龙芯中科研发的自主指令系统（龙芯架构）。
+  1. 编写程序获取进程号。
 
-本项目将xv6移植到LoongArch平台上，感谢张福新老师提供的初始版本，下面将介绍如何在Ubuntu 20.04中通过QEMU模拟器（在PC上模拟LoongArch硬件）编译xv6并运行调试。
+     <img src="./imgs/image-20220602031158286.png" alt="image-20220602031158286"  />
 
+  2. 修改Makefile重新生成xv6，运行程序。![image-20220602031356661](./imgs/image-20220602031356661.png)
 
-## 配置交叉编译环境
+  ## 添加系统调用
 
-为了能编译在LoongArch下运行的xv6内核，需要下载交叉编译工具链。
-```sh
-wget https://github.com/loongson/build-tools/releases/download/2022.05.29/loongarch64-clfs-5.0-cross-tools-gcc-full.tar.xz
+  1. 增加系统调用号![image-20220602031800991](./imgs/image-20220602031800991.png)
+  2. 修改user.h![image-20220602031837420](./imgs/image-20220602031837420.png)
+  3. usys.S中定义用户态入口![image-20220602031913727](./imgs/image-20220602031913727.png)
+  4. 修改syscall.c的跳转表![image-20220602031956496](./imgs/image-20220602031956496.png)
+  5. 实现sys_getcpuid()函数![image-20220602032020138](./imgs/image-20220602032020138.png)
+  6. 实现getcpuid()函数![image-20220602032043892](./imgs/image-20220602032043892.png)
+  7. 修改defs.h![image-20220602032105578](./imgs/image-20220602032105578.png)
 
-sudo tar -vxf loongarch64-clfs-5.0-cross-tools-gcc-full.tar.xz -C /opt
-```
+  ## 验证新系统调用
 
-配置交叉编译工具的环境变量
-```sh
-. setenv.sh
-```
-
-`setenv.sh`是一个用于设置环境变量的脚本文件
-```sh
-#!/bin/sh
-set -x
-CC_PREFIX=/opt/cross-tools
-
-export PATH=$CC_PREFIX/bin:$PATH
-export LD_LIBRARY_PATH=$CC_PREFIX/lib:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=$CC_PREFIX/loongarch64-unknown-linux-gnu/lib/:$LD_LIBRARY_PATH
-
-set +x
-```
-
-上述的命令只是临时设置环境变量，如需永久设置，可通过修改/etc/profile实现； 
-通过命令检验是否设置成功
-```sh
-loongarch64-unknown-linux-gnu-gcc --version
-```
-
-看到如下提示则说明已正确设置
-![](./imgs/Pasted%20image%2020220528100304.png)
-
-## 编译xv6内核
-
-下载xv6-loongarch
-```
-git clone https://github.com/Junkher/xv6-loongarch.git
-cd xv6-loongarch
-```
-
-开始编译
-```
-make all
-```
-
-终端会输出包括如下部分的编译信息
-![](./imgs/Pasted%20image%2020220528101719.png)
-
-当前路径下会生成`fs.img`文件，`\kernel`下也会生成所有链接时需要的\*.o, \*.d等文件，以及最终的`kernel`二进制文件
-![](./imgs/Pasted%20image%2020220528102004.png)
-
-## QEMU运行xv6-loongarch
-
-```bash
-cd qemu-loongarch-runenv
-```
-
-通过脚本文件`./run_loongarch.sh`的-k参数，指定我们编译好的xv6-loongarch内核，即可启动仿真运行
-```bash
-./run_loongarch.sh -k ../kernel/kernel
-```
-
-启动后如下图所示，按下“Ctrl” + “A”组合键，松开后再按"X"来退出QEMU。
-
-![](./imgs/Pasted%20image%2020220602102051.png)
-
-
-# 调试观察
-
-## GDB工具安装使用
-
-安装一些必要依赖，根据编译时的报错情况自行安装所需依赖
-```sh
-sudo apt install texinfo bison flex libgmp-dev
-```
-
-编译gdb工具，大概需要等待几分钟的时间
-```sh
-git clone https://github.com/foxsen/binutils-gdb 
-cd inutils-gdb 
-git checkout loongarch-v2022-03-10 
-mkdir build 
-cd build 
-../configure --target=loongarch64-unknown-linux-gnu --prefix=/opt/gdb 
-make 
-make install
-```
-
-查看自定义的安装路径下的文件，如下图所示
-![](./imgs/Pasted%20image%2020220602095832.png)
-
-
-## GDB调试观察
-
-使用-D参数启动调试模式，实际上是执行调试服务器gdbserver的角色，默认监听TCP::1234端口，等待gdb客户端的接入。
-```sh
-./run_loongarch.sh -k ../kernel/kernel -D
-```
-
-![](./imgs/Pasted%20image%2020220602105307.png)
-
-此时在另一个终端上启动gdb，并指定被调试对象(编译好的kernel文件路径)
-```bash
-/opt/gdb/bin/loongarch64-unknown-linux-gnu-gdb ../kernel/kernel
-```
-
-![](./imgs/Pasted%20image%2020220602105953.png)
-
-
-在gdb命令提示符下执行`target remote :1234`命令连接到xv6目标系统上
-```gdb
-target remote :1234
-```
-
-![](./imgs/Pasted%20image%2020220602110048.png)
-
-使用`b`命令在kernel/main.c的函数入口设置断点，并使用`c`命令继续执行xv6内核代码，直到碰到断点
-![](./imgs/Pasted%20image%2020220602111325.png)
-
-此时xv6的输出窗口中显示了相应的启动过程，但由于设置了断点，仍未到达shell的初始化。
-![](./imgs/Pasted%20image%2020220602111602.png)
-
-## GDB调试基本指令
-
-### 运行命令
-
-- r(run)
-- c(continue)
-- n(next)
-- s(step)
-- q(quit)
-
-### 断点
-
-- b(break n 
-
-### 查看运行信息
-
-- i(info) stack
-- i register
-- i thread
+  1. 编写程序![image-20220602032811621](./imgs/image-20220602032811621.png)
+  2. 执行程序![image-20220602032754370](./imgs/image-20220602032754370.png)

@@ -1,0 +1,24 @@
+# 新增系统调用
+
+## 系统调用实例
+
+1. 编写程序获取进程号。
+
+   <img src="/home/kieren/.config/Typora/typora-user-images/image-20220602031158286.png" alt="image-20220602031158286"  />
+
+2. 修改Makefile重新生成xv6，运行程序。![image-20220602031356661](/home/kieren/.config/Typora/typora-user-images/image-20220602031356661.png)
+
+## 添加系统调用
+
+1. 增加系统调用号![image-20220602031800991](/home/kieren/.config/Typora/typora-user-images/image-20220602031800991.png)
+2. 修改user.h![image-20220602031837420](/home/kieren/.config/Typora/typora-user-images/image-20220602031837420.png)
+3. usys.S中定义用户态入口![image-20220602031913727](/home/kieren/.config/Typora/typora-user-images/image-20220602031913727.png)
+4. 修改syscall.c的跳转表![image-20220602031956496](/home/kieren/.config/Typora/typora-user-images/image-20220602031956496.png)
+5. 实现sys_getcpuid()函数![image-20220602032020138](/home/kieren/.config/Typora/typora-user-images/image-20220602032020138.png)
+6. 实现getcpuid()函数![image-20220602032043892](/home/kieren/.config/Typora/typora-user-images/image-20220602032043892.png)
+7. 修改defs.h![image-20220602032105578](/home/kieren/.config/Typora/typora-user-images/image-20220602032105578.png)
+
+## 验证新系统调用
+
+1. 编写程序![image-20220602032811621](/home/kieren/.config/Typora/typora-user-images/image-20220602032811621.png)
+2. 执行程序![image-20220602032754370](/home/kieren/.config/Typora/typora-user-images/image-20220602032754370.png)
