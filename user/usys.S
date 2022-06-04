@@ -105,3 +105,8 @@ uptime:
  li.d $a7, SYS_uptime
  syscall 0
  jirl $zero, $ra, 0
+.global chpri
+chpri:
+ li.d $a7, SYS_chpri
+ syscall 0
+ jirl $zero, $ra, 0

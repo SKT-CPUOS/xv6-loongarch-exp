@@ -119,6 +119,7 @@ allocproc(void)
 found:
   p->pid = allocpid();
   p->state = USED;
+  p->priority = 10;
 
   // Allocate a trapframe page.
   if((p->trapframe = (struct trapframe *)kalloc()) == 0){
@@ -431,14 +432,58 @@ void
 scheduler(void)
 {
   struct proc *p;
+  struct proc *temp;
   struct cpu *c = mycpu();
+  int priority;
+  int needed = 1; 
   
   c->proc = 0;
+  // for(;;){
+  //   // Avoid deadlock by ensuring that devices can interrupt.
+  //   intr_on();
+
+  //   for(p = proc; p < &proc[NPROC]; p++) {
+  //     acquire(&p->lock);
+  //     if(p->state == RUNNABLE) {
+  //       // Switch to chosen process.  It is the process's job
+  //       // to release its lock and then reacquire it
+  //       // before jumping back to us.
+  //       p->state = RUNNING;
+  //       c->proc = p;
+  //       swtch(&c->context, &p->context);
+
+  //       // Process is done running for now.
+  //       // It should have changed its p->state before coming back.
+  //       c->proc = 0;
+  //     }
+  //     release(&p->lock);
+  //   }
+  // }
+
   for(;;){
     // Avoid deadlock by ensuring that devices can interrupt.
     intr_on();
 
     for(p = proc; p < &proc[NPROC]; p++) {
+      if(needed) {
+        priority = 19;
+        for(temp = proc; temp < &proc[NPROC]; temp++) 
+        {
+          if(temp->state == RUNNABLE && temp->priority < priority) 
+          {
+            priority =  temp->priority;
+          }
+        }
+        
+      }
+
+      needed = 0;
+      if(p->state != RUNNABLE)
+        continue;
+      if(p->priority > priority)
+        continue;
+
+      
       acquire(&p->lock);
       if(p->state == RUNNABLE) {
         // Switch to chosen process.  It is the process's job
@@ -453,6 +498,7 @@ scheduler(void)
         c->proc = 0;
       }
       release(&p->lock);
+      needed = 1;
     }
   }
 }
@@ -644,7 +690,26 @@ procdump(void)
       state = states[p->state];
     else
       state = "???";
-    printf("%d %s %s", p->pid, state, p->name);
+    // printf("%d %s %s", p->pid, state, p->name);
+    printf("PID=%d state=%s priority=%d %s:", p->pid, state, p->priority, p->name);
     printf("\n");
   }
+}
+
+uint64
+chpri(int pid, int priority) 
+{
+  struct proc *p;
+
+  for(p = proc; p < &proc[NPROC]; p++){
+    acquire(&p->lock);
+    if(p->pid == pid){
+      p->priority = priority;
+      release(&p->lock);
+      break;
+    }
+    release(&p->lock);
+
+  }
+  return (uint64)pid;
 }

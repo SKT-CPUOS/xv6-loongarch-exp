@@ -95,3 +95,16 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+
+uint64 
+sys_chpri(void)
+{
+  int pid, pr;
+  if(argint(0, &pid) < 0)
+    return (uint64)(-1);
+
+  if(argint(1, &pr) < 0) 
+    return (uint64)-1;
+  return chpri(pid, pr);
+}
