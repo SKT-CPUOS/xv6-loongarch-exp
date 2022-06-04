@@ -105,3 +105,8 @@ uptime:
  li.d $a7, SYS_uptime
  syscall 0
  jirl $zero, $ra, 0
+.global getcpuid
+getcpuid:
+ li.d $a7, SYS_getcpuid
+ syscall 0
+ jirl $zero, $ra, 0

@@ -112,6 +112,9 @@ UPROGS=\
 	$U/_sh\
 	$U/_stressfs\
 	$U/_usertests\
+	$U/_print-pid\
+	$U/_pcpuid\
+	$U/_my_app\
 #	$U/_grind\
 	$U/_wc\
 	$U/_zombie\

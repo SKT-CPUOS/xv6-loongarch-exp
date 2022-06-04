@@ -648,3 +648,8 @@ procdump(void)
     printf("\n");
   }
 }
+
+int getcpuid()
+{
+  return cpuid();
+}
