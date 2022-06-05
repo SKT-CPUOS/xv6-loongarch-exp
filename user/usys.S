@@ -105,3 +105,13 @@ uptime:
  li.d $a7, SYS_uptime
  syscall 0
  jirl $zero, $ra, 0
+.global sh_var_read
+sh_var_read:
+ li.d $a7, SYS_sh_var_read
+ syscall 0
+ jirl $zero, $ra, 0
+.global sh_var_write
+sh_var_write:
+ li.d $a7, SYS_sh_var_write
+ syscall 0
+ jirl $zero, $ra, 0

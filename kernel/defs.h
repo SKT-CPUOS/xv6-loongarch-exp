@@ -8,6 +8,7 @@ struct spinlock;
 struct sleeplock;
 struct stat;
 struct superblock;
+extern int sh_var_for_sem_demo;
 
 // console.c
 void            consoleinit(void);
@@ -26,6 +27,7 @@ void            initlock(struct spinlock*, char*);
 void            release(struct spinlock*);
 void            push_off(void);
 void            pop_off(void);
+// extern int sh_var_for_sem_demo;
 
 // sleeplock.c
 void            acquiresleep(struct sleeplock*);

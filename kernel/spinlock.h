@@ -6,4 +6,5 @@ struct spinlock {
   char *name;        // Name of lock.
   struct cpu *cpu;   // The cpu holding the lock.
 };
+int sh_var_for_sem_demo;
 

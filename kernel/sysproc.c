@@ -95,3 +95,20 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+
+uint64
+sys_sh_var_read()
+{
+  return (uint64)sh_var_for_sem_demo;
+}
+
+uint64
+sys_sh_var_write()
+{
+  int n;
+  if(argint(0, &n) < 0)
+    return (uint64)-1;
+  sh_var_for_sem_demo = n;
+  return (uint64)sh_var_for_sem_demo;
+}
