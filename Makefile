@@ -113,6 +113,7 @@ UPROGS=\
 	$U/_stressfs\
 	$U/_usertests\
 	$U/_sh_rw_nolock\
+	$U/_sh_rw_lock\
 #	$U/_grind\
 	$U/_wc\
 	$U/_zombie\

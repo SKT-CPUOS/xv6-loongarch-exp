@@ -115,3 +115,23 @@ sh_var_write:
  li.d $a7, SYS_sh_var_write
  syscall 0
  jirl $zero, $ra, 0
+.global sem_create
+sem_create:
+ li.d $a7, SYS_sem_create
+ syscall 0
+ jirl $zero, $ra, 0
+.global sem_free
+sem_free:
+ li.d $a7, SYS_sem_free
+ syscall 0
+ jirl $zero, $ra, 0
+.global sem_p
+sem_p:
+ li.d $a7, SYS_sem_p
+ syscall 0
+ jirl $zero, $ra, 0
+.global sem_v
+sem_v:
+ li.d $a7, SYS_sem_v
+ syscall 0
+ jirl $zero, $ra, 0

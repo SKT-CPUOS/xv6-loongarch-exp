@@ -25,6 +25,10 @@ int sleep(int);
 int uptime(void);
 int sh_var_read(void);
 int sh_var_write(int);
+int sem_create(int);
+int sem_free(int);
+int sem_p(int);
+int sem_v(int);
 
 // ulib.c
 int stat(const char*, struct stat*);

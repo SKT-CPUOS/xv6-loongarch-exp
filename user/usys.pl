@@ -38,3 +38,7 @@ entry("sleep");
 entry("uptime");
 entry("sh_var_read");
 entry("sh_var_write");
+entry("sem_create");
+entry("sem_free");
+entry("sem_p");
+entry("sem_v");

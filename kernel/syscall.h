@@ -22,3 +22,7 @@
 #define SYS_close  21
 #define SYS_sh_var_read  22
 #define SYS_sh_var_write  23
+#define SYS_sem_create  24
+#define SYS_sem_free  25
+#define SYS_sem_p  26
+#define SYS_sem_v  27

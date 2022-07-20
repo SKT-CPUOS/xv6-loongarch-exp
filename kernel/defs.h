@@ -8,7 +8,8 @@ struct spinlock;
 struct sleeplock;
 struct stat;
 struct superblock;
-extern int sh_var_for_sem_demo;
+extern uint sh_var_for_sem_demo;
+// struct sh_var_for_sem_demo;
 
 // console.c
 void            consoleinit(void);
@@ -27,6 +28,7 @@ void            initlock(struct spinlock*, char*);
 void            release(struct spinlock*);
 void            push_off(void);
 void            pop_off(void);
+void            initsem(void);
 // extern int sh_var_for_sem_demo;
 
 // sleeplock.c
@@ -80,6 +82,7 @@ void            yield(void);
 int             either_copyout(int user_dst, uint64 dst, void *src, uint64 len);
 int             either_copyin(void *dst, int user_src, uint64 src, uint64 len);
 void            procdump(void);
+void            wakeup1p(void *);
 
 // swtch.S
 void            swtch(struct context*, struct context*);
