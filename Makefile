@@ -30,7 +30,8 @@ OBJS = \
   $K/syscall.o\
   $K/sysproc.o\
   $K/sysfile.o\
-  $K/uservec.o
+  $K/uservec.o\
+  $K/sharemem.o\
 
 TOOLPREFIX = loongarch64-unknown-linux-gnu-
 
@@ -112,6 +113,7 @@ UPROGS=\
 	$U/_sh\
 	$U/_stressfs\
 	$U/_usertests\
+	$U/_test\
 #	$U/_grind\
 	$U/_wc\
 	$U/_zombie\

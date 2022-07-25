@@ -90,4 +90,8 @@ struct proc
   struct file *ofile[NOFILE];  // Open files
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
+
+  uint64 shm; 				   //本进程共享内存区域的下边界
+  uint shmkeymask; 			   //本进程的8个共享内存区与使用掩码（位图）
+  void* shmva[8]; 			   //本进程共享内存起始地址（虚地址）列表
 };

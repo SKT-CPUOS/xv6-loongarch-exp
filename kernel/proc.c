@@ -120,6 +120,10 @@ found:
   p->pid = allocpid();
   p->state = USED;
 
+  p->shm = TRAPFRAME - 64 *2 * PGSIZE;  			//初始化shm，刚开始shm与KERNBASE重合
+
+  p->shmkeymask = 0;  			// 初始化shmkeymask
+
   // Allocate a trapframe page.
   if((p->trapframe = (struct trapframe *)kalloc()) == 0){
     freeproc(p);
@@ -194,6 +198,7 @@ proc_pagetable(struct proc *p)
 void
 proc_freepagetable(pagetable_t pagetable, uint64 sz)
 {
+  // printf("sz:%d\n", sz);
   uvmunmap(pagetable, TRAPFRAME, 1, 0);
   uvmfree(pagetable, sz);
 }
@@ -280,6 +285,17 @@ fork(void)
     release(&np->lock);
     return -1;
   }
+
+  shmaddcount(p->shmkeymask);  		//fork出新进程，所以引用数加1
+  np->shm = p->shm;             		//复制父进程的shm
+
+  np->shmkeymask = p->shmkeymask; 		//复制父进程的shmkeymask
+  for(i=0;i<8;++i){          		        //复制父进程的shmva数组
+    if(shmkeyused(i,np->shmkeymask)){		//只拷贝已启用的共享内存区
+      np->shmva[i] = p->shmva[i];
+    }
+  }
+
   np->sz = p->sz;
 
   // copy saved user registers.
@@ -400,6 +416,7 @@ wait(uint64 addr)
             release(&wait_lock);
             return -1;
           }
+          shmrelease(np->pagetable, np->shm, np->shmkeymask);
           freeproc(np);
           release(&np->lock);
           release(&wait_lock);

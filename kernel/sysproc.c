@@ -95,3 +95,21 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+uint64
+sys_shmgetat (void)
+{
+  int key, num;
+  if(argint(0, &key) < 0 || argint(1, &num) < 0)
+    return -1;
+  return (uint64)shmgetat(key,num);
+}
+
+int
+sys_shmrefcount(void)
+{
+  int key;
+  if(argint(0,&key)<0)
+    return -1;
+  return shmrefcount(key);
+}

@@ -180,3 +180,11 @@ int             exec(char*, char**);
 
 // number of elements in fixed-size array
 #define NELEM(x) (sizeof(x)/sizeof((x)[0]))
+
+// sharemem.c
+void            sharememinit();
+void*           shmgetat(uint, uint);
+int             shmrefcount(uint);
+int             shmrelease(pde_t*, uint64, uint);
+void            shmaddcount(uint);
+int             shmkeyused(uint, uint);

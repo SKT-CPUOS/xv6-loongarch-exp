@@ -105,3 +105,13 @@ uptime:
  li.d $a7, SYS_uptime
  syscall 0
  jirl $zero, $ra, 0
+.global shmgetat
+shmgetat:
+ li.d $a7, SYS_shmgetat
+ syscall 0
+ jirl $zero, $ra, 0
+.global shmrefcount
+shmrefcount:
+ li.d $a7, SYS_shmrefcount
+ syscall 0
+ jirl $zero, $ra, 0
