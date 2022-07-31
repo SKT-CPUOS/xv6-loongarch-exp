@@ -40,3 +40,8 @@ void free(void*);
 int atoi(const char*);
 int memcmp(const void *, const void *, uint);
 void *memcpy(void *, const void *, uint);
+
+//mwssagequeue.c
+int   mqget(uint);
+int   msgsnd(uint, void*, int);
+int   msgrcv(uint, void*, int);

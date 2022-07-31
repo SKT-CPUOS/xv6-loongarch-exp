@@ -105,3 +105,18 @@ uptime:
  li.d $a7, SYS_uptime
  syscall 0
  jirl $zero, $ra, 0
+.global mqget
+mqget:
+ li.d $a7, SYS_mqget
+ syscall 0
+ jirl $zero, $ra, 0
+.global msgsnd
+msgsnd:
+ li.d $a7, SYS_msgsnd
+ syscall 0
+ jirl $zero, $ra, 0
+.global msgrcv
+msgrcv:
+ li.d $a7, SYS_msgrcv
+ syscall 0
+ jirl $zero, $ra, 0

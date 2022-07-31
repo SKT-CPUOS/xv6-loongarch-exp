@@ -36,3 +36,6 @@ entry("getpid");
 entry("sbrk");
 entry("sleep");
 entry("uptime");
+entry("mqget");
+entry("msgsnd");
+entry("msgrcv");

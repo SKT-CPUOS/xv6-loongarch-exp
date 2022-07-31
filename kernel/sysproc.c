@@ -95,3 +95,36 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+//messagequeue.c
+int
+sys_mqget(void)
+{
+  int key;
+  if(argint(0,&key)<0)
+    return -1;
+  return mqget(key);
+}
+
+int
+sys_msgsnd(void)
+{
+  int mqid;
+  char* msg = 0;
+  int sz;
+  if(argint(0, &mqid) < 0 || argint(2, &sz) < 0 || argstr(1,msg,sz)<0)
+    return -1;
+  return msgsnd(mqid,msg,sz);
+}
+
+int
+sys_msgrcv(void)
+{
+  int mqid;
+  char* msg = 0;
+  int sz;
+  if(argint(0, &mqid) < 0 || argint(2, &sz) < 0 || argstr(1,msg,sz)<0)
+    return -1;
+  return msgrcv(mqid,msg,sz); 
+}
+

@@ -37,10 +37,12 @@ main()
 //printf("fileinit\n");
     ramdiskinit();   // emulated hard disk
 //printf("ramdiskinit\n");
+    mqinit();
     userinit();      // first user process
 //printf("userinit\n");
     __sync_synchronize();
     started = 1;
+    cpu0: starting xv6
   } else {
     while(started == 0)
       ;

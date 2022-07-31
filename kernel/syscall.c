@@ -104,6 +104,9 @@ extern uint64 sys_unlink(void);
 extern uint64 sys_wait(void);
 extern uint64 sys_write(void);
 extern uint64 sys_uptime(void);
+extern uint64 sys_mqget(void);   //messagequeue.c
+extern uint64 sys_msgsnd(void);
+extern uint64 sys_msgrcv(void);
 
 static uint64 (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -127,6 +130,9 @@ static uint64 (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
+[SYS_mqget]     sys_mqget,    //messagequeue.c
+[SYS_msgsnd]     sys_msgsnd,
+[SYS_msgrcv]     sys_msgrcv,
 };
 
 void

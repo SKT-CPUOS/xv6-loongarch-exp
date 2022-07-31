@@ -180,3 +180,12 @@ int             exec(char*, char**);
 
 // number of elements in fixed-size array
 #define NELEM(x) (sizeof(x)/sizeof((x)[0]))
+
+// messagequeue.c
+void            mqinit();
+int             mqget(uint);
+int             msgsnd(uint, void*, int);
+int             msgrcv(uint, void*, int);
+void            releasemq2(int);
+void			releasemq(uint);
+void            addmqcount(uint);
