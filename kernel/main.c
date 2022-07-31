@@ -39,6 +39,7 @@ main()
 //printf("ramdiskinit\n");
     userinit();      // first user process
 //printf("userinit\n");
+    printf("cpu%d: starting xv6\n", cpuid());
     __sync_synchronize();
     started = 1;
   } else {

@@ -8,12 +8,12 @@ main(int argc, char * argv[])
     int pid;
     printf("This is a demo for prio-schedule!\n");
     pid = getpid();
-    chpri(pid,19);
+    chpri(pid,19);  //系统默认优先级是10
 
     int i = 0;
     
     pid = fork();
-    if(pid == 0) 
+    if(pid == 0)            //子进程
     {
         chpri(getpid(), 5);
         i = 1;
@@ -37,7 +37,7 @@ main(int argc, char * argv[])
             i++;
         }
         printf("p2 finished\n");
-    }else
+    }else               //父进程
     {
         i = 1;
         while (i > 0)
