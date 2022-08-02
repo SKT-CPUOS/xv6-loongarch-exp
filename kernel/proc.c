@@ -416,7 +416,9 @@ wait(uint64 addr)
             release(&wait_lock);
             return -1;
           }
-          shmrelease(np->pagetable, np->shm, np->shmkeymask);
+          shmrelease(np->pagetable, np->shm, np->shmkeymask); // 解除共享内存映射
+          np->shm = TRAPFRAME - 64 *2 * PGSIZE;         //把shm重置
+          np->shmkeymask = 0; //把shmkeymask重置
           freeproc(np);
           release(&np->lock);
           release(&wait_lock);
