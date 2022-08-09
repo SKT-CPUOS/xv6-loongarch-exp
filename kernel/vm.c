@@ -322,6 +322,49 @@ copyout(pagetable_t pagetable, uint64 dstva, char *src, uint64 len)
   return 0;
 }//todo
 
+int
+copyoutstr(pagetable_t pagetable, uint64 dstva, char *src, uint64 len)
+{
+  uint64 n, va0, pa0;
+
+  int got_null = 0;
+  while(len > 0){
+    va0 = PGROUNDDOWN(dstva);
+    pa0 = walkaddr(pagetable, va0);
+    if(pa0 == 0)
+      return -1;
+    n = PGSIZE - (dstva - va0);
+    if(n > len)
+      n = len;
+    char *p = (char *)((pa0 + (dstva - va0)) | DMWIN_MASK);
+    while(n > 0) {
+      if(*src == '\0'){
+        *p = '\0';
+        got_null = 1;
+        break;
+      } else {
+        *p = *src;
+      }
+      --n;
+      --len;
+      p++;
+      src++;
+    }
+
+    
+
+    len -= n;
+    src += n;
+    dstva = va0 + PGSIZE;
+  }
+
+  if(got_null){
+    return 0;
+  } else {
+    return -1;
+  }
+}//todo
+
 // Copy from user to kernel.
 // Copy len bytes to dst from virtual address srcva in a given page table.
 // Return 0 on success, -1 on error.
@@ -354,6 +397,7 @@ copyin(pagetable_t pagetable, char *dst, uint64 srcva, uint64 len)
 int
 copyinstr(pagetable_t pagetable, char *dst, uint64 srcva, uint64 max)
 {
+
   uint64 n, va0, pa0;
   int got_null = 0;
 

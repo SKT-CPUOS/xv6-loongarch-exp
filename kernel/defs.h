@@ -8,6 +8,7 @@ struct spinlock;
 struct sleeplock;
 struct stat;
 struct superblock;
+struct msg;
 
 // console.c
 void            consoleinit(void);
@@ -102,6 +103,7 @@ void            uvmunmap(pagetable_t, uint64, uint64, int);
 void            uvmclear(pagetable_t, uint64);
 uint64          walkaddr(pagetable_t, uint64);
 int             copyout(pagetable_t, uint64, char *, uint64);
+int             copyoutstr(pagetable_t, uint64, char *, uint64);
 int             copyin(pagetable_t, char *, uint64, uint64);
 int             copyinstr(pagetable_t, char *, uint64, uint64);
 
@@ -170,6 +172,7 @@ void            extioi_complete(uint64);
 // syscall.c
 int             argint(int, int*);
 int             argstr(int, char*, int);
+int             argstr1(int, struct msg *, int);
 int             argaddr(int, uint64 *);
 int             fetchstr(uint64, char*, int);
 int             fetchaddr(uint64, uint64*);
@@ -184,8 +187,8 @@ int             exec(char*, char**);
 // messagequeue.c
 void            mqinit();
 int             mqget(uint);
-int             msgsnd(uint, void*, int);
-int             msgrcv(uint, void*, int);
+int             msgsnd(uint, int, int, char *);
+int             msgrcv(uint, int, int, uint64);
 void            releasemq2(int);
 void			releasemq(uint);
 void            addmqcount(uint);

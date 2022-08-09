@@ -135,7 +135,7 @@ found:
     return 0;
   }
 
-  p->mqmask = 0;
+  p->mqmask = 0;    //初始化mqmask
 
   // Set up new context to start executing at forkret,
   // which returns to user space.
@@ -290,8 +290,8 @@ fork(void)
   // Cause fork to return 0 in the child.
   np->trapframe->a0 = 0;
 
-  addmqcount(p->mqmask);
-  np->mqmask = p->mqmask;
+  addmqcount(p->mqmask);      //父进程持有的消息队列引用数全部加1
+  np->mqmask = p->mqmask;     //复制父进程的mqmask
 
   // increment reference counts on open file descriptors.
   for(i = 0; i < NOFILE; i++)
@@ -405,8 +405,8 @@ wait(uint64 addr)
             release(&wait_lock);
             return -1;
           }
-          releasemq2(np->mqmask);
-          np->mqmask = 0;
+          releasemq2(np->mqmask);   //回收消息队列
+          np->mqmask = 0;           //重置进程的mqmask
           freeproc(np);
           release(&np->lock);
           release(&wait_lock);

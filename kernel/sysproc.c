@@ -6,6 +6,8 @@
 #include "memlayout.h"
 #include "spinlock.h"
 #include "proc.h"
+#include "messagequeue.h"
+
 
 uint64
 sys_exit(void)
@@ -106,25 +108,40 @@ sys_mqget(void)
   return mqget(key);
 }
 
+// struct msg{
+//   int type;
+//   char *dataaddr;
+// }s1;
+
 int
 sys_msgsnd(void)
 {
   int mqid;
-  char* msg = 0;
+  
   int sz;
-  if(argint(0, &mqid) < 0 || argint(2, &sz) < 0 || argstr(1,msg,sz)<0)
+
+  int type;
+  char* msg = "";
+  if(argint(0, &mqid) < 0 || argint(1, &type) < 0 || argint(2, &sz) < 0 || argstr(3,msg,sz)<0)
     return -1;
-  return msgsnd(mqid,msg,sz);
+
+
+  // printf("type:%d\n", type);
+  // printf("msg:%s", msg);
+  
+  return msgsnd(mqid,type,sz, msg);
 }
 
 int
 sys_msgrcv(void)
 {
   int mqid;
-  char* msg = 0;
   int sz;
-  if(argint(0, &mqid) < 0 || argint(2, &sz) < 0 || argstr(1,msg,sz)<0)
+  int type;
+  // char* msg = ;
+  uint64 addr;
+  if(argint(0, &mqid) < 0 || argint(1, &type) < 0 || argint(2, &sz) < 0 || argaddr(3, &addr) < 0)
     return -1;
-  return msgrcv(mqid,msg,sz); 
+  return msgrcv(mqid,type,sz, addr); 
 }
 

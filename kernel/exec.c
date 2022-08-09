@@ -121,8 +121,8 @@ exec(char *path, char **argv)
 
   proc_freepagetable(oldpagetable, oldsz);
 
-  releasemq(p->mqmask);
-  p->mqmask = 0;
+  releasemq(p->mqmask);       //回收消息队列
+  p->mqmask = 0;              //重置进程的mqmask
 
 
   return argc; // this ends up in a0, the first argument to main(argc, argv)

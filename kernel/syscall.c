@@ -6,6 +6,7 @@
 #include "proc.h"
 #include "syscall.h"
 #include "defs.h"
+#include "messagequeue.h"
 
 // Fetch the uint64 at addr from the current process.
 int
@@ -25,6 +26,7 @@ int
 fetchstr(uint64 addr, char *buf, int max)
 {
   struct proc *p = myproc();
+
   int err = copyinstr(p->pagetable, buf, addr, max);
   if(err < 0)
     return err;
@@ -82,6 +84,81 @@ argstr(int n, char *buf, int max)
     return -1;
   return fetchstr(addr, buf, max);
 }
+
+// int
+// argstr1(int n, struct msg *msg, int max)
+// {
+//   uint64 addr;
+//   if(argaddr(n, &addr) < 0)
+//     return -1;
+
+//   struct proc *proc = myproc();
+
+//   uint64 va0, pa0;
+//   int got_null = 0;
+
+//   int i = 0;
+
+//   va0 = PGROUNDDOWN(addr);
+//   pa0 = walkaddr(proc->pagetable, va0);
+//   int *p = (int *) ((pa0 + (addr - va0)) | DMWIN_MASK);
+//   msg->type = *p;
+//   p++;
+//   uint64 p1 = (uint64)*p;
+//   char *p2 = (char *)(p1);
+//   n = PGSIZE - (addr) -va0 - 1;
+//   if(n > max)
+//       n = max;
+//   while (n > 0)
+//   {
+//     printf("%d ", *p2);
+//     --n;
+//     --max;
+//   }
+  
+//   addr = va0 + PGSIZE;
+
+//   printf("%d", msg->type);
+
+//   while(got_null == 0 && max > 0){
+//     va0 = PGROUNDDOWN(addr);
+//     pa0 = walkaddr(proc->pagetable, va0);
+//     if(pa0 == 0)
+//       return -1;
+//     n = PGSIZE - (addr - va0);
+//     if(n > max)
+//       n = max;
+
+//     char *p = (char *) ((pa0 + (addr - va0)) | DMWIN_MASK);
+//     while(n > 0){
+
+//       // *msg = *p;
+//       printf("%d ", *p);
+//       i++;
+
+//       --n;
+//       --max;
+//       p++;
+//       msg++;
+//       // dst++;
+//     }
+
+//     addr = va0 + PGSIZE;
+//   }
+//   // *msg = '/0';
+//   if(got_null == 0){
+//     printf("dfdfld\n");
+//     return 0;
+//   } else {
+//     return -1;
+//   }
+
+//   // int err = copyinstr(proc->pagetable, buf, addr, max);
+//   // if(err < 0)
+//   //   return err;
+//   // return strlen(buf);
+  
+// }
 
 extern uint64 sys_chdir(void);
 extern uint64 sys_close(void);

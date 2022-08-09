@@ -43,5 +43,5 @@ void *memcpy(void *, const void *, uint);
 
 //mwssagequeue.c
 int   mqget(uint);
-int   msgsnd(uint, void*, int);
-int   msgrcv(uint, void*, int);
+int   msgsnd(uint, int, int, void*);
+int   msgrcv(uint, int, int, void*);
