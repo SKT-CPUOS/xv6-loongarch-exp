@@ -218,6 +218,30 @@ uvmdealloc(pagetable_t pagetable, uint64 oldsz, uint64 newsz)
   return newsz;
 }
 
+uint64 
+myallocuvm(pagetable_t pgdir, uint64 start, uint64 end) {
+	char* mem;
+	uint64 a;
+
+	a = PGROUNDUP(start);
+	for(; a < end; a += PGSIZE) {
+		mem = kalloc();
+		memset(mem, 0, PGSIZE);
+    mappages(pgdir, a, PGSIZE, (uint64)mem, PTE_P|PTE_W|PTE_PLV|PTE_MAT|PTE_D);
+	}
+	return (end-start);
+}
+
+uint64
+mydeallocuvm(pagetable_t pgdir, uint64 start, uint64 end) {
+  if(PGROUNDUP(start) < PGROUNDUP(end)){
+    int npages = (PGROUNDUP(end) - PGROUNDUP(start)) / PGSIZE;
+    uvmunmap(pgdir, PGROUNDUP(start), npages, 1);
+  }
+
+	return start;
+}
+
 // Recursively free page-table pages.
 // All leaf mappings must already have been removed.
 void

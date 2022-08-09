@@ -95,3 +95,23 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+uint64 
+sys_myalloc(void)
+{
+	int n;   // 分配 n 个字节
+	if(argint(0, &n) < 0)
+		return 0;
+	if(n <= 0)
+		return 0;
+	return mygrowproc(n);
+}
+
+uint64 
+sys_myfree(void) {
+	uint64 addr;
+  if(argaddr(0, &addr) < 0)
+	// if(argint(0, &addr) < 0)
+		return -1;
+	return myreduceproc(addr);
+}

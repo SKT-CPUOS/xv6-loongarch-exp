@@ -105,3 +105,13 @@ uptime:
  li.d $a7, SYS_uptime
  syscall 0
  jirl $zero, $ra, 0
+.global myalloc
+myalloc:
+ li.d $a7, SYS_myalloc
+ syscall 0
+ jirl $zero, $ra, 0
+.global myfree
+myfree:
+ li.d $a7, SYS_myfree
+ syscall 0
+ jirl $zero, $ra, 0

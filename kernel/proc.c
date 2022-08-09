@@ -120,6 +120,12 @@ found:
   p->pid = allocpid();
   p->state = USED;
 
+  for(int i = 0; i < 10; i++){
+	  p->vm[i].next = -1;
+	  p->vm[i].length = 0;
+  }
+  p->vm[0].next = 0;
+
   // Allocate a trapframe page.
   if((p->trapframe = (struct trapframe *)kalloc()) == 0){
     freeproc(p);
@@ -646,5 +652,59 @@ procdump(void)
       state = "???";
     printf("%d %s %s", p->pid, state, p->name);
     printf("\n");
+    for(int i = p->vm[0].next; i != 0; i = p->vm[i].next) {
+      printf("start: %d, length: %d\n", p->vm[i].address, p->vm[i].length);
+    }
+    printf("\n");
   }
+}
+
+uint64 
+mygrowproc(int n){                 // 实现首次最佳适应算法
+	struct proc *proc = myproc();
+  struct vma *vm = proc->vm;     // 遍历寻找合适的空间
+	uint64 start = proc->sz;          // 寻找合适的分配起点
+	int index;
+	int prev = 0;
+	int i;
+
+	for(index = vm[0].next; index != 0; index = vm[index].next){
+		if(start + n < vm[index].address)
+			break;
+		start = vm[index].address + vm[index].length;
+		prev = index;
+	}
+	
+	for(i = 1; i < 10; i++) {            // 寻找一块没有用的 vma 记录新的内存块
+		if(vm[i].next == -1){
+			vm[i].next = index;			
+			vm[i].address = start;
+			vm[i].length = n;
+
+			vm[prev].next = i;              //将vm[i]挂入链表尾部
+			
+			myallocuvm(proc->pagetable, start, start + n);    //为vm[i]分配内存
+			return start;   // 返回分配的地址
+		}
+	}
+	return 0;
+}
+
+int
+myreduceproc(uint64 address){  // 释放 address 开头的内存块
+	int prev = 0;
+	int index;
+  struct proc *proc = myproc();
+
+	for(index = proc->vm[0].next; index != 0; index = proc->vm[index].next) {
+		if(proc->vm[index].address == address && proc->vm[index].length > 0) {    //找到对应内存块
+			mydeallocuvm(proc->pagetable, proc->vm[index].address, proc->vm[index].address + proc->vm[index].length);		  //释放内存	
+			proc->vm[prev].next = proc->vm[index].next;     //从链上摘除
+			proc->vm[index].next = -1;        //标记为未用
+			proc->vm[index].length = 0;
+			break;
+		}
+		prev = index;
+	}
+	return 0;
 }
