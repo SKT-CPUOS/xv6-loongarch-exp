@@ -119,6 +119,7 @@ allocproc(void)
 found:
   p->pid = allocpid();
   p->state = USED;
+  p->pthread = 0;
 
   for(int i = 0; i < 10; i++){
 	  p->vm[i].next = -1;
@@ -363,14 +364,23 @@ exit(int status)
   reparent(p);
 
   // Parent might be sleeping in wait().
-  wakeup(p->parent);
+  if(p->parent == 0 && p->pthread != 0) {
+    wakeup(p->pthread);
+  }else {
+    wakeup(p->parent);
+
+  }
+
   
   acquire(&p->lock);
 
   p->xstate = status;
   p->state = ZOMBIE;
 
+  
+
   release(&wait_lock);
+
 
   // Jump into the scheduler, never to return.
   sched();
@@ -707,4 +717,110 @@ myreduceproc(uint64 address){  // 释放 address 开头的内存块
 		prev = index;
 	}
 	return 0;
+}
+
+// int clone(void (*fcn)(void *), void *arg, void *stack) {
+//调用clone()前需要分配好线程栈的内存空间，并通过stack参数传入
+int clone(void (*fcn)(void *), void *stack, void *arg) {
+
+
+
+  struct proc *curproc = myproc();    //记录发出clone的进程
+  struct proc *np;
+  if ((np = allocproc()) == 0)        //为新线程分配PCB/TCB
+    return -1;
+
+  np->pagetable = curproc->pagetable;   //线程间共用同一个页表
+
+
+  if((np->trapframe = (struct trapframe *)kalloc()) == 0){    //分配线程内核栈空间
+    freeproc(np);
+    release(&np->lock);
+    return 0;
+  }
+
+  
+  np->sz = curproc->sz;
+  np->pthread = curproc;          // exit时用于找到父线程并唤醒
+  np->ustack = stack;             // 设置自己的线程栈
+  np->parent = 0;
+  *(np->trapframe) = *(curproc->trapframe);   //继承trapframe
+
+  // 设置trapframe映射
+  if(mappages(np->pagetable, TRAPFRAME - PGSIZE, PGSIZE,
+              (uint64)(np->trapframe), PTE_NX | PTE_P | PTE_W | PTE_MAT | PTE_D) < 0){  
+    uvmfree(np->pagetable, 0);
+    return 0;
+  }
+
+  // 设置栈指针
+  np->trapframe->sp = (uint64)(stack + 4096 -8);
+  // 修改返回值a0
+  np->trapframe->a0 = (uint64)arg;
+
+
+  // 修改返回地址
+  np->trapframe->era = (uint64)fcn;
+
+  // 复制文件描述符
+  for (int i = 0; i < NOFILE; i++)
+    if (curproc->ofile[i])
+      np->ofile[i] = filedup(curproc->ofile[i]);
+  np->cwd = idup(curproc->cwd);
+
+  safestrcpy(np->name, curproc->name, sizeof(curproc->name));
+  int pid = np->pid;
+
+  release(&np->lock);
+
+
+  acquire(&np->lock);
+  np->state = RUNNABLE;
+  release(&np->lock);
+
+  // 返回新线程的pid
+  return pid;
+}
+
+int join() {
+  struct proc *curproc = myproc();
+  struct proc *p;
+  int havekids;
+  for (;;) {
+    havekids = 0;
+    for (p = proc; p < &proc[NPROC]; p++) {
+      if (p->pthread != curproc)    // 判断是不是自己的子线程
+        continue;
+
+      havekids = 1;
+      if (p->state == ZOMBIE) {
+        acquire(&p->lock);
+        if(p->trapframe)
+          kfree((void*)p->trapframe);
+        p->trapframe = 0;
+        if(p->pagetable)
+          uvmunmap(p->pagetable, TRAPFRAME - PGSIZE, 1, 0); // 释放内核栈
+        p->pagetable = 0;
+        p->sz = 0;
+        p->pid = 0;
+        p->parent = 0;
+        p->pthread = 0;
+        p->name[0] = 0;
+        p->chan = 0;
+        p->killed = 0;
+        p->xstate = 0;
+        p->state = UNUSED;
+
+        int pid = p->pid;
+
+        release(&p->lock);
+        return pid;
+      }
+    }
+    if (!havekids || curproc->killed) {
+      return -1;
+    }
+    sleep(curproc, &wait_lock);
+  }
+  return 0;
 }

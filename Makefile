@@ -63,7 +63,7 @@ $U/initcode: $U/initcode.S
 tags: $(OBJS) _init
 	etags *.S *.c
 
-ULIB = $U/ulib.o $U/usys.o $U/printf.o $U/umalloc.o
+ULIB = $U/ulib.o $U/usys.o $U/printf.o $U/umalloc.o $U/uthread.o
 
 _%: %.o $(ULIB)
 	$(LD) $(LDFLAGS) -N -e main -Ttext 0 -o $@ $^
@@ -86,8 +86,7 @@ SH_FLAGS = -O -fno-omit-frame-pointer -ggdb -MD -march=loongarch64 -mabi=lp64s -
 
 $U/_sh: $U/sh.c $(ULIB)
 	$(CC) $(SH_FLAGS) $U/sh.o $U/sh.c
-	# $(LD) $(LDFLAGS) -N -e main -Ttext 0 -o $U/_sh $U/sh.o $(ULIB)
-	$(LD) $(LDFLAGS) -e main -Ttext 0 -o $U/_sh $U/sh.o $(ULIB)
+	$(LD) $(LDFLAGS) -N -e main -Ttext 0 -o $U/_sh $U/sh.o $(ULIB)
 	$(OBJDUMP) -S $U/_sh > $U/sh.asm
 
 mkfs/mkfs: mkfs/mkfs.c $K/fs.h $K/param.h
@@ -115,6 +114,7 @@ UPROGS=\
 	$U/_usertests\
 	$U/_myalloc\
 	$U/_no_protect\
+	$U/_test\
 #	$U/_grind\
 	$U/_wc\
 	$U/_zombie\

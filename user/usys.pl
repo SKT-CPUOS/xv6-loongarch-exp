@@ -38,3 +38,5 @@ entry("sleep");
 entry("uptime");
 entry("myalloc");
 entry("myfree");
+entry("clone");
+entry("join");

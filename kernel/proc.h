@@ -97,4 +97,7 @@ struct proc
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
   struct vma vm[10];
+
+  struct proc *pthread;        // Parent thread
+  void *ustack;                // User thread stack
 };

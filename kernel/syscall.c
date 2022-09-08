@@ -106,6 +106,8 @@ extern uint64 sys_write(void);
 extern uint64 sys_uptime(void);
 extern uint64 sys_myalloc(void);
 extern uint64 sys_myfree(void);
+extern uint64 sys_clone(void);
+extern uint64 sys_join(void);
 
 static uint64 (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -131,6 +133,8 @@ static uint64 (*syscalls[])(void) = {
 [SYS_close]   sys_close,
 [SYS_myalloc] sys_myalloc,
 [SYS_myfree]  sys_myfree,
+[SYS_clone] sys_clone,
+[SYS_join] sys_join,
 };
 
 void

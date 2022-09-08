@@ -115,3 +115,13 @@ myfree:
  li.d $a7, SYS_myfree
  syscall 0
  jirl $zero, $ra, 0
+.global clone
+clone:
+ li.d $a7, SYS_clone
+ syscall 0
+ jirl $zero, $ra, 0
+.global join
+join:
+ li.d $a7, SYS_join
+ syscall 0
+ jirl $zero, $ra, 0

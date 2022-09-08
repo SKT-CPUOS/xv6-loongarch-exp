@@ -127,7 +127,12 @@ usertrapret(void)
   // jump to uservec.S at the top of memory, which 
   // switches to the user page table, restores user registers,
   // and switches to user mode with ertn.
-  userret(TRAPFRAME, pgdl);
+  if(p->pthread == 0) {
+    userret(TRAPFRAME, pgdl);
+
+  }else{
+    userret(TRAPFRAME - PGSIZE, pgdl);
+  }
 }
 
 // interrupts and exceptions from kernel code go here via kernelvec,

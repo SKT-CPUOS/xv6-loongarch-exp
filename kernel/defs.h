@@ -80,6 +80,9 @@ int             either_copyin(void *dst, int user_src, uint64 src, uint64 len);
 void            procdump(void);
 uint64          mygrowproc(int);
 int             myreduceproc(uint64);
+int             join();
+// int             clone(void (*)(void *), void *, void *);
+int             clone(void (*)(void *), void *, void *);
 
 // swtch.S
 void            swtch(struct context*, struct context*);

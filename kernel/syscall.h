@@ -22,3 +22,6 @@
 #define SYS_close  21
 #define SYS_myalloc 22
 #define SYS_myfree   23
+
+#define SYS_clone 24
+#define SYS_join 25

@@ -115,3 +115,25 @@ sys_myfree(void) {
 		return -1;
 	return myreduceproc(addr);
 }
+
+
+// int clone(void (*fcn)(void *), void *arg, void *stack);
+uint64 sys_clone(void){
+  uint64 a;
+  uint64 b;
+  uint64 c;
+  // char* c;
+  argaddr(0,&a);
+  argaddr(1,&b);
+  argaddr(2, &c);
+  // argptr(2,&c,0);
+
+  return (uint64)clone((void (*)(void *))a,(void*)b, (void *)c);
+}
+
+// int join(void **stack);
+uint64 sys_join(void){
+  // uint64 a;
+  // argaddr(0,&a);
+  return (uint64)join();
+}
