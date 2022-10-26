@@ -240,6 +240,14 @@ r_csr_badi()
   return x;
 }
 
+static inline uint32
+r_csr_badv()
+{
+  uint32 x;
+  asm volatile("csrrd %0, 0x7" : "=r" (x) );
+  return x;
+}
+
 /* IOCSR */
 static inline uint32 iocsr_readl(uint32 reg)
 {
@@ -292,6 +300,7 @@ intr_off()
 #define PTE_D (1L << 1) // dirty
 #define PTE_PLV (3L << 2) //privilege level
 #define PTE_MAT (1L << 4) //memory access type
+#define PTE_SWAPPED (1L << 5) //swapped to disk
 #define PTE_P (1L << 7) // physical page exists
 #define PTE_W (1L << 8) // writeable
 #define PTE_NX (1UL << 62) //non executable
@@ -300,6 +309,7 @@ intr_off()
 
 #define PAMASK          0xFFFFFFFFFUL << PGSHIFT
 #define PTE2PA(pte) (pte & PAMASK)
+#define PTE_ADDR(pte) (pet >> 12)
 // shift a physical address to the right place for a PTE.
 #define PA2PTE(pa) (((uint64)pa) & PAMASK)
 #define PTE_FLAGS(pte) ((pte) & 0xE0000000000001FFUL)

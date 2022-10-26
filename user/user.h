@@ -23,6 +23,10 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
+int chmod(const char* pathname, char mode);
+int geti(char *argv, uint addrs[]);
+int recoverb(uint addr, char* buf, int indirect);
+int bstat(void);
 
 // ulib.c
 int stat(const char*, struct stat*);

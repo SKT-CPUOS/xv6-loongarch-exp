@@ -115,6 +115,7 @@ exec(char *path, char **argv)
   oldpagetable = p->pagetable;
   p->pagetable = pagetable;
   p->sz = sz;
+  p->swap_start = sz;
   p->trapframe->era = elf.entry;  // initial program counter = main
   p->trapframe->sp = sp; // initial stack pointer
 

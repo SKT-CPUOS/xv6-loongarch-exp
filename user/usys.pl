@@ -36,3 +36,7 @@ entry("getpid");
 entry("sbrk");
 entry("sleep");
 entry("uptime");
+entry("chmod");
+entry("geti");
+entry("recoverb");
+entry("bstat");

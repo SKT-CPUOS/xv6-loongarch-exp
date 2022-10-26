@@ -27,7 +27,8 @@
 // for use by user pages
 // from physical address 0x90000000 to PHYSTOP.
 #define RAMBASE (0x90000000UL | DMWIN_MASK)
-#define RAMSTOP (RAMBASE + 128*1024*1024)
+// #define RAMSTOP (RAMBASE + 128*1024*1024)
+#define RAMSTOP (RAMBASE + 300*4*1024)
 
 // map kernel stacks beneath the trampframe,
 // each surrounded by invalid guard pages.

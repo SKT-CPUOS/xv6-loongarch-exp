@@ -112,6 +112,10 @@ UPROGS=\
 	$U/_sh\
 	$U/_stressfs\
 	$U/_usertests\
+	$U/_chmod\
+	$U/_savei\
+	$U/_recoveri\
+	$U/_virtualMemproc1\
 #	$U/_grind\
 	$U/_wc\
 	$U/_zombie\
@@ -119,6 +123,10 @@ UPROGS=\
 fs.img: mkfs/mkfs README $(UPROGS)
 	mkfs/mkfs fs.img README $(UPROGS)
 	xxd -i fs.img > kernel/ramdisk.h
+
+rawdisk.img:README
+	dd if=/dev/zero of=rawdisk.img count=10000
+	dd if=README of=rawdisk.img conv=notrunc
 
 -include kernel/*.d user/*.d
 

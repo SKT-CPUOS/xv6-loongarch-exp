@@ -21,6 +21,7 @@
 #include "defs.h"
 #include "fs.h"
 #include "buf.h"
+#include "memlayout.h"
 
 struct {
   struct spinlock lock;
@@ -148,4 +149,41 @@ bunpin(struct buf *b) {
   b->refcnt--;
   release(&bcache.lock);
 }
+
+
+// blockno 起始的连续 4 块盘块数据拷贝到 va 起始的物理页帧中
+void read_page_from_disk(int dev, char *pa, uint blockno)
+{
+  // printf("从磁盘换入\n");
+  struct buf* b; // xv6 的读写必须经过缓存块
+    for(int i = 0; i < 4; i ++) { // 物理页帧分 4 片存入 4 个盘块
+      b = bread(dev, blockno + i); // 将磁盘数据读到缓存块
+      // cprintf("读出来吗？:%d",b->data[1]);
+      memmove((void *)(pa + i * 1024), b->data, 1024); // 将缓存块数据写入物理页帧
+      brelse(b); // 释放缓存块
+    }
+}
+
+
+
+// 将 4096 字节的物理页帧写到 blockno 起始的连续 8 块盘块中
+ void write_page_to_disk(int dev, char *pa, uint blockno) 
+ {
+  begin_op();
+  // begin_op();
+ 	struct buf* b;
+  for(int i = 0; i < 4; i ++) 
+ 	{
+    // printf("写出到磁盘\n");
+ 		b = bread(dev, blockno + i); // 获取设备 1 上第 blockno+i 个盘块
+    memmove(b->data, (void *)((uint64)(pa + i * 1024) | DMWIN_MASK), 1024); // 将数据移动到物理内存上
+    // memset(b->data, 0, PGSIZE);
+    bwrite(b);
+    // log_write(b); // 写磁盘
+    // log_write(b);
+    brelse(b); // 释放缓存块
+  }
+
+  end_op();
+ }
 

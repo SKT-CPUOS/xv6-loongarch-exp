@@ -18,6 +18,7 @@ struct run {
 struct {
   struct spinlock lock;
   struct run *freelist;
+  int count;
 } kmem;
 
 void
@@ -55,6 +56,7 @@ kfree(void *pa)
 
   acquire(&kmem.lock);
   r->next = kmem.freelist;
+  kmem.count++;
   kmem.freelist = r;
   release(&kmem.lock);
 }
@@ -69,11 +71,18 @@ kalloc(void)
 
   acquire(&kmem.lock);
   r = kmem.freelist;
-  if(r)
+  if(r){
     kmem.freelist = r->next;
+    kmem.count--;
+  }
   release(&kmem.lock);
 
   if(r)
     memset((char*)r, 5, PGSIZE); // fill with junk 
   return (void*)r;
+}
+
+void
+bstat(){
+  printf("物理页帧总数: %d\n",kmem.count);
 }

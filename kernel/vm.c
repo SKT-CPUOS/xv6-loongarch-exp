@@ -5,6 +5,8 @@
 #include "loongarch.h"
 #include "defs.h"
 #include "fs.h"
+#include "spinlock.h"
+#include "proc.h"
 
 void
 tlbinit(void)
@@ -129,15 +131,23 @@ uvmunmap(pagetable_t pagetable, uint64 va, uint64 npages, int do_free)
     panic("uvmunmap: not aligned");
 
   for(a = va; a < va + npages*PGSIZE; a += PGSIZE){
-    if((pte = walk(pagetable, a, 0)) == 0)
-      panic("uvmunmap: walk");
-    if((*pte & PTE_V) == 0)
-      panic("uvmunmap: not mapped");
+    if((pte = walk(pagetable, a, 0)) == 0) {
+      continue;
+    }
+      // panic("uvmunmap: walk");
+    if(*pte == 0) {
+      continue;
+    }
+    // if((*pte & PTE_V) == 0)
+    //   panic("uvmunmap: not mapped");
     if(PTE_FLAGS(*pte) == PTE_V)
       panic("uvmunmap: not a leaf");
     if(do_free){
-      uint64 pa = PTE2PA(*pte);    
-      kfree((void*)(pa | DMWIN_MASK));
+      if((*pte & PTE_SWAPPED) == 0) {
+        uint64 pa = PTE2PA(*pte);    
+        kfree((void*)(pa | DMWIN_MASK));
+      }
+      
     }
     *pte = 0;
   }
@@ -389,3 +399,95 @@ copyinstr(pagetable_t pagetable, char *dst, uint64 srcva, uint64 max)
     return -1;
   }
 }//todo
+
+/*
+1.查看该进程的页表
+2.找一个有映射的页表项
+3.将其对应的页帧的内容，持久到文件系统
+4.释放其页帧
+*/
+void 
+swapout(struct proc *p) { // 换出一个物理页帧
+    pte_t *pte;
+    pagetable_t pgdir = p->pagetable;
+    uint64 a = p->sz - 1; // 起始地址
+    a = PGROUNDDOWN(a); // 向下取整
+    
+
+
+    for(; a >= p->swap_start; a -= PGSIZE) {
+      pte = walk(pgdir, a, 0);
+      if(*pte  & PTE_P && ((*pte & PTE_SWAPPED) == 0 )) { // 找到一个映射页,并且没有被换出
+
+        uint64 pa = walkaddr(pgdir, a); 
+
+        uint blockno = balloc4(1); // 申请 4 个盘块
+
+        write_page_to_disk(1, (void *)pa, blockno); // 写入磁盘
+        
+        kfree((void *)(pa | DMWIN_MASK));//释放对应的页帧
+
+
+        *pte = (blockno << 12); // 记录盘块号
+        *pte = (*pte | PTE_SWAPPED);//将其swapped位置1
+
+        return;
+      }
+    }
+ }
+
+void
+swapin(char* mem, pte_t *pte){ // 线性地址、页表项
+  uint blockno = ((uint)*pte >> 12); // 取磁盘号
+  read_page_from_disk(1, mem, blockno); 
+}
+// struct  
+// {
+//   struct spinlock lock; 
+//   int use_lock;
+// }mylock; //防止多个进程，对同一个页帧进行抢夺，出现的同步问题
+
+
+void
+pgfault()
+{
+  uint64 addr = PGROUNDDOWN(r_csr_badv()); // 获取导致中断的线性地址,要取整
+
+  
+  struct proc *proc = myproc();
+
+  char* mem;
+  
+
+ 
+  if(r_csr_badv() > proc->sz) { // 越界
+    printf("kalloc out of memory!  %p  %d\n",addr,proc->pid);
+    proc->killed = 1;
+    return;
+  } 
+
+ 
+
+  mem = kalloc(); // 分配一块物理页帧
+  while(mem == 0) { // 没有页帧了
+    printf("执行换出操作\n");
+
+    swapout(myproc()); // 进程空间找个页扔出去
+    mem = kalloc(); // 再分配一次
+  }
+
+  pte_t* pte = walk(proc->pagetable, addr, 1);//查看va的页表项
+  
+ 
+  if((*pte & PTE_SWAPPED) == 0) { // 第一次分配
+    memset(mem, 0, PGSIZE);
+  }
+  else { // 已分配但被换出的页
+    printf("将物理页从磁盘调入内存\n");
+    swapin(mem, pte); // 根据 pte 的盘块号将数据取回来
+  }
+
+  *pte = (*pte & (~PTE_V));
+  // 最后建立映射
+  mappages(proc->pagetable, addr, PGSIZE, (uint64)mem, PTE_PLV | PTE_P | PTE_W | PTE_MAT | PTE_D);
+}

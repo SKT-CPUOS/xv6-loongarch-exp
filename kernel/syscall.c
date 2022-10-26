@@ -104,6 +104,10 @@ extern uint64 sys_unlink(void);
 extern uint64 sys_wait(void);
 extern uint64 sys_write(void);
 extern uint64 sys_uptime(void);
+extern uint64 sys_chmod(void);
+extern uint64 sys_geti(void);
+extern uint64 sys_recoverb(void);
+extern uint64 sys_bstat(void);
 
 static uint64 (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -127,6 +131,10 @@ static uint64 (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
+[SYS_chmod]   sys_chmod,
+[SYS_geti]   sys_geti,
+[SYS_recoverb]  sys_recoverb,
+[SYS_bstat]  sys_bstat,
 };
 
 void

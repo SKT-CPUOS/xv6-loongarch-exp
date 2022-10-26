@@ -38,7 +38,8 @@ void wsect(uint, void*);
 void winode(uint, struct dinode*);
 void rinode(uint inum, struct dinode *ip);
 void rsect(uint sec, void *buf);
-uint ialloc(ushort type);
+// uint ialloc(ushort type);
+uint ialloc(uchar type);
 void iappend(uint inum, void *p, int n);
 void die(const char *);
 
@@ -218,13 +219,16 @@ rsect(uint sec, void *buf)
 }
 
 uint
-ialloc(ushort type)
+// ialloc(ushort type)
+ialloc(uchar type)
 {
   uint inum = freeinode++;
   struct dinode din;
 
   bzero(&din, sizeof(din));
-  din.type = xshort(type);
+  // din.type = xshort(type);
+  din.type = type;
+  din.mode = 3;
   din.nlink = xshort(1);
   din.size = xint(0);
   winode(inum, &din);

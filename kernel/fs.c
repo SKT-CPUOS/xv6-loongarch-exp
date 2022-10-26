@@ -183,6 +183,7 @@ iinit()
   
   initlock(&itable.lock, "itable");
   for(i = 0; i < NINODE; i++) {
+    // itable.inode[i].mode = 3;
     initsleeplock(&itable.inode[i].lock, "inode");
   }
 }
@@ -193,7 +194,8 @@ static struct inode* iget(uint dev, uint inum);
 // Mark it as allocated by  giving it type type.
 // Returns an unlocked but allocated and referenced inode.
 struct inode*
-ialloc(uint dev, short type)
+// ialloc(uint dev, short type)
+ialloc(uint dev, char type)
 {
   int inum;
   struct buf *bp;
@@ -204,6 +206,8 @@ ialloc(uint dev, short type)
     dip = (struct dinode*)bp->data + inum%IPB;
     if(dip->type == 0){  // a free inode
       memset(dip, 0, sizeof(*dip));
+      dip->mode = 3;
+      
       dip->type = type;
       log_write(bp);   // mark it allocated on the disk
       brelse(bp);
@@ -226,6 +230,7 @@ iupdate(struct inode *ip)
 
   bp = bread(ip->dev, IBLOCK(ip->inum, sb));
   dip = (struct dinode*)bp->data + ip->inum%IPB;
+  dip->mode = ip->mode;
   dip->type = ip->type;
   dip->major = ip->major;
   dip->minor = ip->minor;
@@ -251,6 +256,7 @@ iget(uint dev, uint inum)
   for(ip = &itable.inode[0]; ip < &itable.inode[NINODE]; ip++){
     if(ip->ref > 0 && ip->dev == dev && ip->inum == inum){
       ip->ref++;
+      // ip->mode = 3;
       release(&itable.lock);
       return ip;
     }
@@ -267,6 +273,7 @@ iget(uint dev, uint inum)
   ip->inum = inum;
   ip->ref = 1;
   ip->valid = 0;
+  // ip->mode = 3;
   release(&itable.lock);
 
   return ip;
@@ -299,6 +306,7 @@ ilock(struct inode *ip)
   if(ip->valid == 0){
     bp = bread(ip->dev, IBLOCK(ip->inum, sb));
     dip = (struct dinode*)bp->data + ip->inum%IPB;
+    ip->mode = dip->mode;
     ip->type = dip->type;
     ip->major = dip->major;
     ip->minor = dip->minor;
@@ -441,6 +449,7 @@ itrunc(struct inode *ip)
 void
 stati(struct inode *ip, struct stat *st)
 {
+  st->mode = ip->mode;
   st->dev = ip->dev;
   st->ino = ip->inum;
   st->type = ip->type;
@@ -672,3 +681,34 @@ nameiparent(char *path, char *name)
 {
   return namex(path, 1, name);
 }
+
+
+// Allocate 4 zeroed disk blocks
+ uint
+ balloc4(uint dev)
+ { 
+ 	for(uint b = 0; b < sb.size; b += BPB) { // 逐块遍历位图
+ 		struct buf* bp = bread(dev, BBLOCK(b, sb)); // 读取某一块位图
+    for(uint bi = 0; bi < BPB && b + bi < sb.size; bi += 8) {
+      if(bp->data[bi/8] == 0) { // 连续 4 块未分配（1 字节）
+        bp->data[bi/8] = 0xff; // 按位取反，全1
+        bwrite(bp); // 更新位图
+        // log_write(bp);
+        brelse(bp); // 释放缓存位图的缓存块
+
+        return b + bi; // 返回连续 4 块的第一块
+      }
+ 		}
+ 		brelse(bp);
+ 	}
+ 	panic("balloc: out of blocks");
+ }
+
+
+ // Free 8 disk blocks
+ void
+ bfree4(int dev, uint b)
+ {
+ 	for(uint i = 0; i < 4; i ++) // 逐个调用 bfree 即可
+    bfree(dev, b + i);
+ }

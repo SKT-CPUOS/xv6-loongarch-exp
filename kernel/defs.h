@@ -86,6 +86,7 @@ void            swtch(struct context*, struct context*);
 void*           kalloc(void);
 void            kfree(void *);
 void            kinit(void);
+void            bstat(void);
 
 // vm.c
 void            tlbinit(void);
@@ -104,6 +105,7 @@ uint64          walkaddr(pagetable_t, uint64);
 int             copyout(pagetable_t, uint64, char *, uint64);
 int             copyin(pagetable_t, char *, uint64, uint64);
 int             copyinstr(pagetable_t, char *, uint64, uint64);
+void            pgfault();
 
 // apic.c
 void            apic_init(void);
@@ -120,6 +122,8 @@ void            brelse(struct buf*);
 void            bwrite(struct buf*);
 void            bpin(struct buf*);
 void            bunpin(struct buf*);
+void            read_page_from_disk(int, char *, uint);
+void            write_page_to_disk(int, char *, uint); 
 
 // log.c
 void            initlog(int, struct superblock*);
@@ -131,7 +135,8 @@ void            end_op(void);
 void            fsinit(int);
 int             dirlink(struct inode*, char*, uint);
 struct inode*   dirlookup(struct inode*, char*, uint*);
-struct inode*   ialloc(uint, short);
+// struct inode*   ialloc(uint, short);
+struct inode*   ialloc(uint, char);
 struct inode*   idup(struct inode*);
 void            iinit();
 void            ilock(struct inode*);
@@ -146,6 +151,8 @@ int             readi(struct inode*, int, uint64, uint, uint);
 void            stati(struct inode*, struct stat*);
 int             writei(struct inode*, int, uint64, uint, uint);
 void            itrunc(struct inode*);
+uint            balloc4(uint);
+void            bfree8(int, uint);
 
 // file.c
 struct file*    filealloc(void);

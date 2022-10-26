@@ -71,9 +71,18 @@ usertrap(void)
   } else if((which_dev = devintr()) != 0){
     // ok
   } else {
-    printf("usertrap(): unexpected trapcause %x pid=%d\n", r_csr_estat(), p->pid);
-    printf("            era=%p badi=%x\n", r_csr_era(), r_csr_badi());
-    p->killed = 1;
+    uint32 rcause = 0x10000;
+    uint32 wcause = 0x20000;
+    if(rcause == r_csr_estat() || wcause == r_csr_estat()) {
+      
+      pgfault();
+    }else{
+      printf("usertrap(): unexpected trapcause %x pid=%d\n", r_csr_estat(), p->pid);
+      printf("            era=%p badi=%x\n", r_csr_era(), r_csr_badi());
+      printf("            vm=%d\n",r_csr_badv());
+      p->killed = 1;
+    }
+    
   }
 
   if(p->killed)
@@ -147,6 +156,8 @@ kerneltrap()
   if((which_dev = devintr()) == 0){
     printf("estat %x\n", r_csr_estat());
     printf("era=%p eentry=%p\n", r_csr_era(), r_csr_eentry());
+    printf("            era=%p badi=%x\n", r_csr_era(), r_csr_badi());
+    printf("            vm=%d\n",r_csr_badv());
     panic("kerneltrap");
   }
 

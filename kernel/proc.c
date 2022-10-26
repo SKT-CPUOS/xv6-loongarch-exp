@@ -194,6 +194,7 @@ proc_pagetable(struct proc *p)
 void
 proc_freepagetable(pagetable_t pagetable, uint64 sz)
 {
+  // printf("111111111111111111111\n");
   uvmunmap(pagetable, TRAPFRAME, 1, 0);
   uvmfree(pagetable, sz);
 }
@@ -281,6 +282,7 @@ fork(void)
     return -1;
   }
   np->sz = p->sz;
+  np->swap_start = p->sz;
 
   // copy saved user registers.
   *(np->trapframe) = *(p->trapframe);
@@ -332,6 +334,7 @@ reparent(struct proc *p)
 void
 exit(int status)
 {
+  // printf("~!!\n");
   struct proc *p = myproc();
 
   if(p == initproc)
@@ -345,6 +348,7 @@ exit(int status)
       p->ofile[fd] = 0;
     }
   }
+  // printf("~!!\n");
 
   begin_op();
   iput(p->cwd);
@@ -352,6 +356,7 @@ exit(int status)
   p->cwd = 0;
 
   acquire(&wait_lock);
+  // printf("~!!\n");
 
   // Give any children to init.
   reparent(p);

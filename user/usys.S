@@ -105,3 +105,23 @@ uptime:
  li.d $a7, SYS_uptime
  syscall 0
  jirl $zero, $ra, 0
+.global chmod
+chmod:
+ li.d $a7, SYS_chmod
+ syscall 0
+ jirl $zero, $ra, 0
+.global geti
+geti:
+ li.d $a7, SYS_geti
+ syscall 0
+ jirl $zero, $ra, 0
+.global recoverb
+recoverb:
+ li.d $a7, SYS_recoverb
+ syscall 0
+ jirl $zero, $ra, 0
+.global bstat
+bstat:
+ li.d $a7, SYS_bstat
+ syscall 0
+ jirl $zero, $ra, 0

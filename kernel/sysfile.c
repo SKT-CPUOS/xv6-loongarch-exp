@@ -15,6 +15,7 @@
 #include "sleeplock.h"
 #include "file.h"
 #include "fcntl.h"
+#include "buf.h"
 
 // Fetch the nth word-sized system call argument as a file descriptor
 // and return both the descriptor and the corresponding struct file.
@@ -239,7 +240,8 @@ bad:
 }
 
 static struct inode*
-create(char *path, short type, short major, short minor)
+// create(char *path, short type, short major, short minor)
+create(char *path, char type, short major, short minor)
 {
   struct inode *ip, *dp;
   char name[DIRSIZ];
@@ -482,5 +484,111 @@ sys_pipe(void)
     fileclose(wf);
     return -1;
   }
+  return 0;
+}
+
+uint64
+sys_chmod(void) {
+  char *pathname = "";
+  int mode;
+  struct inode *ip;
+  if(argstr(0, pathname, 20) < 0) {
+    return -1;
+  }
+  if(argint(1, &mode) < 0) {
+    return -1;
+  }
+
+  begin_op();
+
+  if((ip = namei((char *)pathname)) == 0) {
+    end_op();
+    return -1;
+  }
+
+  ilock(ip);
+
+  ip->mode = mode;
+
+  iupdate(ip);
+  iunlock(ip);
+
+  end_op();
+
+  return 0;
+}
+
+uint64
+sys_geti(void) {
+  char *filename = ""; 
+  uint64 addrs = 0;
+  struct inode *ip; 
+  if(argstr(0, filename, 100) < 0) 
+    return -1;
+  if(argaddr(1, &addrs) < 0) 
+    return -1;
+  begin_op();
+  if((ip = namei(filename)) == 0) 
+  { 
+    end_op(); 
+    return -1; 
+  }
+
+  ilock(ip); 
+  int i;
+  printf("dev:%d\n", ip->dev);
+  for(i = 0; i < 13; i ++){
+    printf("%x\n", ip->addrs[i]);
+    
+    copyout(myproc()->pagetable, addrs + i * 4, (char *)(&ip->addrs[i]), sizeof(uint));
+  }
+    // addrs[i] = ip->addrs[i]; 
+  iunlock(ip); 
+  end_op(); 
+  return 0;
+}
+
+uint64
+sys_recoverb(void) 
+{
+    uint blockno;
+    // char* buf = 0;
+    uint64 addr = 0;
+    int indirect = 0;
+    if(argint(0, (int *)&blockno) < 0 || argaddr(1, &addr) < 0 || argint(2, (int *)&indirect) < 0) {
+      return -1;
+    }
+    struct buf *b = 0;
+    if(indirect == 0) {
+      b = bread(1, blockno);
+
+      copyout(myproc()->pagetable, addr, (char *)b->data, 1024);
+
+      
+
+      return 0;
+    }
+    
+    struct buf *a = 0;
+    int i = 0;
+    a = bread(1, blockno);
+    uint* addrList = (uint *)a->data;
+    while (addrList[i] != 0)
+    {
+      b = bread(1, addrList[i]);
+      copyout(myproc()->pagetable, addr, (char *)b->data, 1024);
+      addr += 1024;
+      i++;
+    }
+
+    return i * 1024;
+    
+    
+    
+}
+
+uint64
+sys_bstat(void) {
+  bstat();
   return 0;
 }

@@ -117,6 +117,10 @@ fileread(struct file *f, uint64 addr, int n)//todo
     r = devsw[f->major].read(1, addr, n);
   } else if(f->type == FD_INODE){
     ilock(f->ip);
+    if((f->ip->mode & 1) == 0) {
+      iunlock(f->ip);
+      return -1;
+    }
     if((r = readi(f->ip, 1, addr, f->off, n)) > 0)
       f->off += r;
     iunlock(f->ip);
@@ -159,6 +163,11 @@ filewrite(struct file *f, uint64 addr, int n)
 
       begin_op();
       ilock(f->ip);
+      if((f->ip->mode & 2) == 0) {
+        iunlock(f->ip);
+        end_op();
+        return -1;
+      }
       if ((r = writei(f->ip, 1, addr + i, f->off, n1)) > 0)
         f->off += r;
       iunlock(f->ip);
