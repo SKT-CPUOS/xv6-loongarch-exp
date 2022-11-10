@@ -520,29 +520,28 @@ sys_chmod(void) {
 
 uint64
 sys_geti(void) {
-  char *filename = ""; 
-  uint64 addrs = 0;
+  char *filename = "";                  // 文件名
+  uint64 addrs = 0;                     // 将索引表拷贝到内存地址addr处
   struct inode *ip; 
   if(argstr(0, filename, 100) < 0) 
     return -1;
   if(argaddr(1, &addrs) < 0) 
     return -1;
   begin_op();
-  if((ip = namei(filename)) == 0) 
+  if((ip = namei(filename)) == 0)       // 得不到对应索引节点
   { 
     end_op(); 
     return -1; 
   }
 
-  ilock(ip); 
+  ilock(ip);                            // 同步inode和dinode
   int i;
   printf("dev:%d\n", ip->dev);
   for(i = 0; i < 13; i ++){
     printf("%x\n", ip->addrs[i]);
     
-    copyout(myproc()->pagetable, addrs + i * 4, (char *)(&ip->addrs[i]), sizeof(uint));
+    copyout(myproc()->pagetable, addrs + i * 4, (char *)(&ip->addrs[i]), sizeof(uint)); // 拷贝索引
   }
-    // addrs[i] = ip->addrs[i]; 
   iunlock(ip); 
   end_op(); 
   return 0;
@@ -559,7 +558,7 @@ sys_recoverb(void)
       return -1;
     }
     struct buf *b = 0;
-    if(indirect == 0) {
+    if(indirect == 0) {         // 直接索引
       b = bread(1, blockno);
 
       copyout(myproc()->pagetable, addr, (char *)b->data, 1024);
@@ -573,7 +572,7 @@ sys_recoverb(void)
     int i = 0;
     a = bread(1, blockno);
     uint* addrList = (uint *)a->data;
-    while (addrList[i] != 0)
+    while (addrList[i] != 0)        // 间接索引读取
     {
       b = bread(1, addrList[i]);
       copyout(myproc()->pagetable, addr, (char *)b->data, 1024);

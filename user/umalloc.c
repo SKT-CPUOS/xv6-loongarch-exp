@@ -57,7 +57,7 @@ morecore(uint nu)
   hp = (Header*)p;
   
   hp->s.size = nu;
-  printf("%d\n", &hp->s.size);
+  // printf("%d\n", &hp->s.size);
   free((void*)(hp + 1));
   return freep;
 }
