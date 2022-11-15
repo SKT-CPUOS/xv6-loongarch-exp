@@ -1,0 +1,3 @@
+[submodule "qemu-loongarch-runenv"]
+	path = qemu-loongarch-runenv
+	url = https://github.com/foxsen/qemu-loongarch-runenv.git
