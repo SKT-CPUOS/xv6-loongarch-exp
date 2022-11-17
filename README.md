@@ -47,8 +47,8 @@ loongarch64-unknown-linux-gnu-gcc --version
 
 下载xv6-loongarch
 ```
-git clone https://github.com/Junkher/xv6-loongarch.git
-cd xv6-loongarch
+git clone --recurse-submodules https://github.com/SKT-CPUOS/xv6-loongarch-exp.git
+cd xv6-loongarch-exp
 ```
 
 开始编译
