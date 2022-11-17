@@ -32,7 +32,12 @@ OBJS = \
   $K/sysfile.o\
   $K/uservec.o
 
+UNAME_M=$(shell uname -m)
+ifeq ($(findstring loongarch64,$(UNAME_M)),loongarch64)
+TOOLPREFIX ?= 
+else
 TOOLPREFIX = loongarch64-unknown-linux-gnu-
+endif
 
 CC = $(TOOLPREFIX)gcc
 AS = $(TOOLPREFIX)gas
