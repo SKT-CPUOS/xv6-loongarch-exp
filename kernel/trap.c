@@ -74,7 +74,7 @@ usertrap(void)
     uint32 rcause = 0x10000;
     uint32 wcause = 0x20000;
     if(rcause == r_csr_estat() || wcause == r_csr_estat()) {
-      
+      // printf("pte:%x\n", r_csr_badv());
       pgfault();
     }else{
       printf("usertrap(): unexpected trapcause %x pid=%d\n", r_csr_estat(), p->pid);

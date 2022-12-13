@@ -135,7 +135,7 @@ uvmunmap(pagetable_t pagetable, uint64 va, uint64 npages, int do_free)
       continue;
     }
       // panic("uvmunmap: walk");
-    if(*pte == 0) {
+    if(*pte == 0 || ((*pte & PTE_SWAPPED) != 0)) {
       continue;
     }
     if((*pte & PTE_V) == 0)
@@ -410,12 +410,14 @@ void
 swapout(struct proc *p) { // 换出一个物理页帧
     pte_t *pte;
     pagetable_t pgdir = p->pagetable;
-    uint64 a = p->sz - 1; // 起始地址
+    // uint64 a = p->sz - 1; // 起始地址
+    uint64 a = p->swap_start; // 起始地址
     a = PGROUNDDOWN(a); // 向下取整
     
 
 
-    for(; a >= p->swap_start; a -= PGSIZE) {
+    for(; a < p->sz; a += PGSIZE) {
+    // for(; a >= p->swap_start; a -= PGSIZE) {
       pte = walk(pgdir, a, 0);
       if(*pte  & PTE_P && ((*pte & PTE_SWAPPED) == 0 )) { // 找到一个映射页,并且没有被换出
 

@@ -86,7 +86,7 @@ mem(void){
 
     for(int i = 0; i < 4; i++) {
         addrTable[i][1] = 'a' + i; 
-        bstat();
+        // bstat();
     }
 
     printf("----------------------------\n");
