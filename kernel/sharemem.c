@@ -108,7 +108,7 @@ deallocshm(pde_t *pgdir, uint64 oldshm, uint64 newshm)
 
     if(PGROUNDUP(newshm) > PGROUNDUP(oldshm)){
         int npages = (PGROUNDUP(newshm) - PGROUNDUP(oldshm)) / PGSIZE;
-        uvmunmap(pgdir, PGROUNDUP(oldshm), npages, 1);
+        uvmunmap(pgdir, PGROUNDUP(oldshm), npages, 0);
     }
 
     return oldshm;
