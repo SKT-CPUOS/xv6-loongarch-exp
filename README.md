@@ -74,11 +74,11 @@ cd qemu-loongarch-runenv
 ```
 
 （如果提示有缺少的库，则按提示安装即可
-例如: 如果提示缺少spice-server   可以尝试： apt install -y libspice-server-dev
-      如果提示缺少libSDL2-2.0.so.0   可以尝试：sudo apt-get install -y libsdl2-2.0-0
-      如果提示缺少libfdt.so.1  可以尝试：sudo apt-get install libfdt-dev
-      如果提示缺少libusbredirparser.so.1  可以尝试：sudo apt-get install libusbredirparser-dev
-      如果提示缺少libfuse3.so.3 可以尝试：sudo apt-get install libfuse3-dev fuse3
+例如: 如果提示缺少spice-server   可以尝试： apt install -y libspice-server-dev    
+      如果提示缺少libSDL2-2.0.so.0   可以尝试：sudo apt-get install -y libsdl2-2.0-0    
+      如果提示缺少libfdt.so.1  可以尝试：sudo apt-get install libfdt-dev    
+      如果提示缺少libusbredirparser.so.1  可以尝试：sudo apt-get install libusbredirparser-dev    
+      如果提示缺少libfuse3.so.3 可以尝试：sudo apt-get install libfuse3-dev fuse3    
 请根据自己系统的具体情况进行相应的完善)
 
 
