@@ -74,7 +74,7 @@ cd qemu-loongarch-runenv
 ```
 
 （如果提示有缺少的库，则按提示安装即可
-例如: 如果提是缺少spice-server   可以尝试： apt install -y libspice-server-dev
+例如: 如果提示缺少spice-server   可以尝试： apt install -y libspice-server-dev
       如果提示缺少libSDL2-2.0.so.0   可以尝试：sudo apt-get install -y libsdl2-2.0-0 )
 
 
