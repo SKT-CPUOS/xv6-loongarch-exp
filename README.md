@@ -99,7 +99,7 @@ sudo apt install texinfo bison flex libgmp-dev
 编译gdb工具，大概需要等待几分钟的时间
 ```sh
 git clone https://github.com/foxsen/binutils-gdb 
-cd inutils-gdb 
+cd binutils-gdb 
 git checkout loongarch-v2022-03-10 
 mkdir build 
 cd build 
